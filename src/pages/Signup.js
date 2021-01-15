@@ -1,13 +1,15 @@
 import styles from './Signup.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import credentialsSend from 'utils/credentialsSend';
+import useCredentials from 'hooks/useCredentials';
+import SnackbarInfo from 'components/common/SnackbarInfo';
 import Container from '@material-ui/core/Container';
 import InputField from 'components/common/InputField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const Signup = () => {
+  const { credentialsSend, status, msg } = useCredentials();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,16 +37,12 @@ const Signup = () => {
       password: password,
     };
 
-    const result = await credentialsSend(
-      '/register',
-      payload
-    );
-
-    if (result) history.replace('/');
+    credentialsSend('/register', payload);
   };
 
   return (
     <div className={styles.main}>
+      <SnackbarInfo msg={msg} status={status} />
       <Container className={styles.container} maxWidth="sm">
         <Typography component="h1" variant="h5">
           SIGN UP
