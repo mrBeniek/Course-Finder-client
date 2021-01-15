@@ -9,12 +9,15 @@ const credentialsSend = async (path, payload) => {
     console.log('DATA IS');
     console.log(data);
     if (response.status === 200) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem(
-        'userInfo',
-        JSON.stringify(data.userInfo)
-      );
-      return true;
+      setTimeout(() => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem(
+          'userInfo',
+          JSON.stringify(data.userInfo)
+        );
+      }, 400);
+
+      return { status: 200, msg: 'Login successful' };
     }
   } catch (err) {
     console.log(err);
