@@ -2,6 +2,7 @@ import styles from './Navbar.module.scss';
 import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 
@@ -12,6 +13,8 @@ const Navbar = () => {
     if (localStorage.token) setLoginState(true);
     else setLoginState(false);
   }, [loginState]);
+
+  const handleAdd = () => {};
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -25,6 +28,11 @@ const Navbar = () => {
 
   return (
     <Container className={styles.container} maxWidth="xl">
+      <div className={styles.leftCont}>
+        <Typography variant="h3">COURSE FINDER</Typography>
+        <Button onClick={handleAdd}>ADD COURSE</Button>
+      </div>
+
       {loginState ? (
         <div>
           <div>Logged in as: {userLabel}</div>
