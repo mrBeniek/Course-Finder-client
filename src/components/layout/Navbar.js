@@ -14,8 +14,6 @@ const Navbar = () => {
     else setLoginState(false);
   }, [loginState]);
 
-  const handleAdd = () => {};
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userInfo');
@@ -30,7 +28,10 @@ const Navbar = () => {
     <Container className={styles.container} maxWidth="xl">
       <div className={styles.leftCont}>
         <Typography variant="h3">COURSE FINDER</Typography>
-        <Button onClick={handleAdd}>ADD COURSE</Button>
+        <ButtonRedirect
+          label="Add Course"
+          link="/addcourse"
+        />
       </div>
 
       {loginState ? (

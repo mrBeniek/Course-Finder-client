@@ -5,7 +5,8 @@ const InputField = ({ ...props }) => {
   return (
     <React.Fragment>
       <TextField
-        variant="outlined"
+        style={{ background: 'white' }}
+        variant="filled"
         margin="normal"
         required
         fullWidth
