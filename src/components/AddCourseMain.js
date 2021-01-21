@@ -20,7 +20,7 @@ const AddCourseMain = ({ asyncRequest }) => {
 
   const handleSubmit = async () => {
     const result = await asyncRequest(
-      authAxios.post('/course', {
+      authAxios.post('/api/add/course', {
         data: {
           name: courseName,
           link: courseLink,
