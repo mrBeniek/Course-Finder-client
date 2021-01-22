@@ -29,7 +29,10 @@ const AddCourseMain = ({ asyncRequest }) => {
       })
     );
     if (result !== 'err') {
-      setTimeout(() => history.push('/'), 1000);
+      setTimeout(
+        () => history.push(`/course/${courseName}`),
+        1000
+      );
     }
   };
 
