@@ -8,6 +8,8 @@ import Container from '@material-ui/core/Container';
 const Main = () => {
   const [courses, setCourses] = useState([]);
 
+  const history = useHistory();
+
   useEffect(() => {
     const fetchCourses = async () => {
       try {
@@ -24,10 +26,6 @@ const Main = () => {
     fetchCourses();
   }, []);
 
-  const history = useHistory();
-
-  const handleClick = index => {};
-
   return (
     <div className={styles.main}>
       {courses.map((val, index) => {
@@ -36,7 +34,9 @@ const Main = () => {
             className={styles.container}
             maxWidth="lg"
             key={index}
-            onClick={() => handleClick(index)}
+            onClick={() =>
+              history.push(`/course/${val.name}`)
+            }
           >
             <Typography variant="h4">{val.name}</Typography>
             <hr />
