@@ -1,5 +1,6 @@
 import styles from './Navbar.module.scss';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +9,8 @@ import ButtonRedirect from 'components/common/ButtonRedirect';
 
 const Navbar = () => {
   const [loginState, setLoginState] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     if (localStorage.token) setLoginState(true);
@@ -27,7 +30,13 @@ const Navbar = () => {
   return (
     <Container className={styles.container} maxWidth="xl">
       <div className={styles.leftCont}>
-        <Typography variant="h3">COURSE FINDER</Typography>
+        <Typography
+          variant="h3"
+          onClick={() => history.push('/')}
+          className={styles.logo}
+        >
+          COURSE FINDER
+        </Typography>
         <ButtonRedirect
           label="Add Course"
           link="/addcourse"
