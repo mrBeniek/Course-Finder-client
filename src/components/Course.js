@@ -1,4 +1,5 @@
 import styles from './Course.module.scss';
+import ReviewBox from 'components/reviewBox/ReviewBox';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -29,7 +30,9 @@ const Course = () => {
   return (
     <Container className={styles.container} maxWidth="md">
       <Typography variant="h4">{course.name}</Typography>
+      <br />
       <hr />
+      <br />
       <a
         href={course.link}
         target="_blank"
@@ -40,6 +43,10 @@ const Course = () => {
       <Typography className={styles.desc} paragraph>
         {course.description}
       </Typography>
+      <br />
+      <hr />
+
+      <ReviewBox />
     </Container>
   );
 };
