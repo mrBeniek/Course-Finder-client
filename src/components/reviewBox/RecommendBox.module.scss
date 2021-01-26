@@ -1,0 +1,8 @@
+.btn {
+  margin: 6px 8px;
+}
+
+.btnSelect {
+  @extend .btn;
+  transform: scale(1.2, 1.2);
+}
