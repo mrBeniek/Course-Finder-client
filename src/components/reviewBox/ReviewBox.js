@@ -1,20 +1,31 @@
 import styles from './ReviewBox.module.scss';
 import React, { useState } from 'react';
+import authAxios from 'utils/authAxios';
 import InputField from '../common/InputField';
 import RecommendBox from './RecommendBox';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 
-const CommentBox = () => {
-  const [comment, setComment] = useState('');
+const ReviewBox = ({ asyncRequest, courseId }) => {
+  const [review, setReview] = useState('');
   const [recommend, setRecommend] = useState('');
 
   const handleChange = state => event => {
     state(event.target.value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    await asyncRequest(
+      authAxios.post('/api/add/course', {
+        data: {
+          id: courseId,
+          recommend: recommend,
+          review: review,
+        },
+      })
+    );
+  };
 
   return (
     <Container className={styles.main} maxWidth="md">
@@ -23,11 +34,11 @@ const CommentBox = () => {
       </Typography>
       <InputField
         label="Your review..."
-        value={comment}
+        value={review}
         multiline
         rows={8}
         required={false}
-        onChange={handleChange(setComment)}
+        onChange={handleChange(setReview)}
       />
       <div className={styles.submitCont}>
         <RecommendBox
@@ -47,4 +58,4 @@ const CommentBox = () => {
   );
 };
 
-export default CommentBox;
+export default ReviewBox;

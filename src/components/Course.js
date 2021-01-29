@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-const Course = () => {
+const Course = ({ ...props }) => {
   const [course, setCourse] = useState({});
 
   const { id } = useParams();
@@ -46,7 +46,7 @@ const Course = () => {
       <br />
       <hr />
 
-      <ReviewBox />
+      <ReviewBox courseId={id} {...props} />
     </Container>
   );
 };
