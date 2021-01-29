@@ -35,7 +35,7 @@ const Main = () => {
             maxWidth="lg"
             key={index}
             onClick={() =>
-              history.push(`/course/${val.name}`)
+              history.push(`/course/${val._id}`)
             }
           >
             <Typography variant="h4">{val.name}</Typography>
