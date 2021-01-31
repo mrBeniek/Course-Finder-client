@@ -17,7 +17,7 @@ const ReviewBox = ({ asyncRequest, courseId }) => {
 
   const handleSubmit = async () => {
     await asyncRequest(
-      authAxios.post('/api/add/course', {
+      authAxios.post('/api/add/review', {
         data: {
           id: courseId,
           recommend: recommend,
