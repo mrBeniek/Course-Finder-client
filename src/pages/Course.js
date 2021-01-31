@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from 'components/layout/Layout';
-import Course from 'components/Course';
+import Course from 'components/course/Course';
 
 const CoursePage = () => {
   return (

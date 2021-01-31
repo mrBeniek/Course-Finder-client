@@ -1,5 +1,5 @@
 import styles from './Course.module.scss';
-import ReviewBox from 'components/reviewBox/ReviewBox';
+import ReviewBox from 'components/course/reviewBox/ReviewBox';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
