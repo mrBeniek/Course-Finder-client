@@ -1,9 +1,9 @@
 import styles from './Navbar.module.scss';
+import logo from 'assets/Course finder logo black.png';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 
@@ -30,13 +30,13 @@ const Navbar = () => {
   return (
     <Container className={styles.container} maxWidth="xl">
       <div className={styles.leftCont}>
-        <Typography
-          variant="h3"
+        <img
           onClick={() => history.push('/')}
           className={styles.logo}
-        >
-          COURSE FINDER
-        </Typography>
+          src={logo}
+          alt="asdf"
+        />
+
         <ButtonRedirect
           label="Add Course"
           link="/addcourse"
