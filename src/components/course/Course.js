@@ -1,6 +1,6 @@
 import styles from './Course.module.scss';
 import ReviewBox from 'components/course/reviewBox/ReviewBox';
-import ReviewList from './ReviewList';
+import ReviewList from './reviewList/ReviewList';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -49,8 +49,8 @@ const Course = ({ ...props }) => {
 
       <ReviewBox courseId={id} {...props} />
       <br />
-      <br />
       <hr />
+      <br />
       <ReviewList id={id} />
     </Container>
   );

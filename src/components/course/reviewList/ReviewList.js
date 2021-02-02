@@ -1,4 +1,5 @@
 import styles from './ReviewList.module.scss';
+import Recommend from './Recommend';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
@@ -21,10 +22,13 @@ const ReviewList = ({ id }) => {
     };
 
     fetchReviews();
-  }, []);
+  }, [id]);
 
   return (
     <Container>
+      <Typography variant="h4">REVIEWS:</Typography>
+      <br />
+      <br />
       {reviews.map((val, index) => {
         return (
           <Container
@@ -32,16 +36,20 @@ const ReviewList = ({ id }) => {
             maxWidth="md"
             key={index}
           >
-            <div>
-              <Typography>{val.author}</Typography>
-              <Typography>{val.date}</Typography>
+            <div className={styles.nameCont}>
+              <div>
+                <Typography variant="h6">
+                  {val.author}
+                </Typography>
+                <Typography>{val.date}</Typography>
+              </div>
+              <Recommend recommend={val.recommend} />
             </div>
 
             <br />
+            <hr />
             <br />
-            <Typography>{val.recommend}</Typography>
-            <br />
-            <br />
+
             <Typography paragraph>{val.review}</Typography>
           </Container>
         );

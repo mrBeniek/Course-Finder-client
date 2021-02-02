@@ -14,39 +14,45 @@ const RecommendBox = ({ recommend, setRecommend }) => {
       </Typography>
       <Button
         className={
-          recommend !== 'yes'
+          recommend !== 'POSITIVE'
             ? styles.btn
             : styles.btnSelect
         }
-        onClick={() => setRecommend('yes')}
+        onClick={() => setRecommend('POSITIVE')}
         color="primary"
         startIcon={<ThumbUpOutlinedIcon />}
         variant={
-          recommend !== 'yes' ? 'outlined' : 'contained'
+          recommend !== 'POSITIVE'
+            ? 'outlined'
+            : 'contained'
         }
       >
         Yes
       </Button>
       <Button
         className={
-          recommend !== 'neutral'
+          recommend !== 'NEUTRAL'
             ? styles.btn
             : styles.btnSelect
         }
-        onClick={() => setRecommend('neutral')}
+        onClick={() => setRecommend('NEUTRAL')}
         variant={
-          recommend !== 'neutral' ? 'outlined' : 'contained'
+          recommend !== 'NEUTRAL' ? 'outlined' : 'contained'
         }
       >
         Neutral
       </Button>
       <Button
         className={
-          recommend !== 'no' ? styles.btn : styles.btnSelect
+          recommend !== 'NEGATIVE'
+            ? styles.btn
+            : styles.btnSelect
         }
-        onClick={() => setRecommend('no')}
+        onClick={() => setRecommend('NEGATIVE')}
         variant={
-          recommend !== 'no' ? 'outlined' : 'contained'
+          recommend !== 'NEGATIVE'
+            ? 'outlined'
+            : 'contained'
         }
         color="secondary"
         endIcon={<ThumbDownOutlinedIcon />}
