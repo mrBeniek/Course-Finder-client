@@ -5,7 +5,7 @@ import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 
-const ReviewList = ({ id }) => {
+const ReviewList = ({ id, asyncRequest }) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(
     'Loading reviews...'
@@ -13,10 +13,11 @@ const ReviewList = ({ id }) => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      try {
-        const { data } = await axios.get(
-          `/api/download/reviews/${id}`
-        );
+      const data = await asyncRequest(
+        axios.get(`/api/download/reviews/${id}`),
+        false
+      );
+      if (data !== 'err') {
         console.log(data.result);
         setReviews(data.result);
         if (data.result.length > 1) {
@@ -24,8 +25,6 @@ const ReviewList = ({ id }) => {
         } else {
           setLoading('No reviews yet!');
         }
-      } catch (err) {
-        console.error(err);
       }
     };
 

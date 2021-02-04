@@ -4,17 +4,24 @@ const useAsync = () => {
   const [status, setStatus] = useState('idle');
   const [msg, setMsg] = useState('');
 
-  const asyncRequest = async callback => {
-    setStatus('pending');
-    setMsg('');
+  const asyncRequest = async (callback, loading = true) => {
+    if (loading === true) {
+      setStatus('pending');
+      setMsg('');
+    }
 
     try {
       const response = await callback;
       const { data } = response;
 
       if (response.status === 200) {
-        setStatus('success');
-        setMsg(data.msg);
+        if (loading === true) {
+          setStatus('success');
+          setMsg(data.msg);
+        }
+        setTimeout(() => {
+          setStatus('idle');
+        }, 4500);
         return data;
       }
     } catch (err) {

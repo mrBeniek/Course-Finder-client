@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
 
-const Course = ({ ...props }) => {
+const Course = ({ asyncRequest }) => {
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -16,20 +16,19 @@ const Course = ({ ...props }) => {
 
   useEffect(() => {
     const fetchCourse = async () => {
-      try {
-        const { data } = await axios.get(
-          `/api/download/courses/${id}`
-        );
+      const data = await asyncRequest(
+        axios.get(`/api/download/courses/${id}`),
+        false
+      );
+      if (data !== 'err') {
         console.log(data.result);
         setCourse(data.result);
         setLoading(false);
-      } catch (err) {
-        console.error(err);
       }
     };
 
     fetchCourse();
-  }, [id]);
+  }, []);
 
   return (
     <Container className={styles.container} maxWidth="md">
@@ -66,11 +65,14 @@ const Course = ({ ...props }) => {
       <br />
       <hr />
 
-      <ReviewBox courseId={id} {...props} />
+      <ReviewBox
+        courseId={id}
+        asyncRequest={asyncRequest}
+      />
       <br />
       <hr />
       <br />
-      <ReviewList id={id} />
+      <ReviewList id={id} asyncRequest={asyncRequest} />
     </Container>
   );
 };
