@@ -1,12 +1,18 @@
 import styles from './Layout.module.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SnackbarInfo from 'components/common/SnackbarInfo';
 import Navbar from './Navbar';
 // import Sidebar from './Sidebar';
 import useAsync from 'hooks/useAsync';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title = false }) => {
   const { asyncRequest, status, msg } = useAsync();
+
+  useEffect(() => {
+    if (title) {
+      document.title = title;
+    }
+  }, [title]);
 
   return (
     <div>

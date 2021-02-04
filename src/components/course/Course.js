@@ -21,6 +21,7 @@ const Course = ({ asyncRequest }) => {
         false
       );
       if (data !== 'err') {
+        document.title = data.result.name;
         console.log(data.result);
         setCourse(data.result);
         setLoading(false);

@@ -5,7 +5,7 @@ import Course from 'components/course/Course';
 const CoursePage = () => {
   return (
     <div>
-      <Layout>
+      <Layout title="Loading course...">
         <Course />
       </Layout>
     </div>

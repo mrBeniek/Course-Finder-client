@@ -5,7 +5,7 @@ import Main from 'components/Main';
 const Home = () => {
   return (
     <div>
-      <Layout>
+      <Layout title="Welcome to Course Finder!">
         <Main />
       </Layout>
     </div>

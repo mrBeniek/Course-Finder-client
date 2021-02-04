@@ -5,7 +5,7 @@ import AddCourseMain from 'components/AddCourseMain';
 const Home = () => {
   return (
     <div>
-      <Layout>
+      <Layout title="Add New Course">
         <AddCourseMain />
       </Layout>
     </div>

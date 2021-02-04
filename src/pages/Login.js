@@ -19,6 +19,10 @@ const Login = () => {
     if (localStorage.token) history.replace('/');
   });
 
+  useEffect(() => {
+    document.title = 'Log In - Course Finder';
+  }, []);
+
   const handleChange = state => event => {
     state(event.target.value);
   };

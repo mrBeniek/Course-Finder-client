@@ -22,6 +22,10 @@ const Signup = () => {
     if (localStorage.token) history.replace('/');
   });
 
+  useEffect(() => {
+    document.title = 'Sign Up - Course Finder';
+  }, []);
+
   const handleChange = state => event => {
     state(event.target.value);
   };
