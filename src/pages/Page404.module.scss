@@ -1,0 +1,7 @@
+@import '_app.scss';
+
+.text {
+  @extend .white-font;
+  @extend .flex-mid-full;
+  height: 90vh;
+}
