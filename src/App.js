@@ -6,6 +6,7 @@ import Login from 'pages/Login';
 import Signup from 'pages/Signup';
 import AddCourse from 'pages/AddCourse';
 import Course from 'pages/Course';
+import Page404 from 'pages/Page404';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <Route path="/signup" component={Signup} />
       <Route path="/addcourse" component={AddCourse} />
       <Route path="/course/:id" component={Course} />
+      <Route path="/404" component={Page404} />
+      <Route path="*" component={Page404} />
     </Switch>
   );
 }
