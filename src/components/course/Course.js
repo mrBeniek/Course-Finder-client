@@ -2,6 +2,7 @@ import styles from './Course.module.scss';
 import ReviewBox from 'components/course/reviewBox/ReviewBox';
 import ReviewList from './reviewList/ReviewList';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +13,8 @@ const Course = ({ asyncRequest }) => {
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const history = useHistory();
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,6 +23,7 @@ const Course = ({ asyncRequest }) => {
         axios.get(`/api/download/courses/${id}`),
         false
       );
+
       if (data !== 'err') {
         document.title = data.result.name;
         console.log(data.result);
@@ -27,8 +31,11 @@ const Course = ({ asyncRequest }) => {
         setLoading(false);
       }
     };
-
-    fetchCourse();
+    if (id.length === 24) {
+      fetchCourse();
+    } else {
+      history.replace('/404');
+    }
   }, []);
 
   return (

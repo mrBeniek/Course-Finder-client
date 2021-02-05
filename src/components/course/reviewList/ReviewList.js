@@ -27,8 +27,7 @@ const ReviewList = ({ id, asyncRequest }) => {
         }
       }
     };
-
-    fetchReviews();
+    if (id.length === 24) fetchReviews();
   }, [id]);
 
   return (

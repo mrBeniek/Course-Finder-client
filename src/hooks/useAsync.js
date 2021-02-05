@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const useAsync = () => {
   const [status, setStatus] = useState('idle');
   const [msg, setMsg] = useState('');
+
+  const history = useHistory();
 
   const asyncRequest = async (callback, loading = true) => {
     if (loading === true) {
@@ -25,7 +28,12 @@ const useAsync = () => {
         return data;
       }
     } catch (err) {
+      console.error(err);
       const { response } = err;
+      if (response.status === 404) {
+        history.replace('/404');
+        return 'err';
+      }
       if (response.status === 403) {
         setMsg(response.data.msg);
       } else
@@ -37,7 +45,6 @@ const useAsync = () => {
       setTimeout(() => {
         setStatus('idle');
       }, 4500);
-      console.error(err);
       return 'err';
     }
   };
