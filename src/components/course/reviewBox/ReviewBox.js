@@ -16,6 +16,7 @@ const ReviewBox = ({ asyncRequest, courseId }) => {
   };
 
   const handleSubmit = async () => {
+    if (!review || !recommend) return;
     await asyncRequest(
       authAxios.post('/api/add/review', {
         data: {
