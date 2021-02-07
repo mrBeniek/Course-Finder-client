@@ -7,7 +7,12 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 
-const ReviewBox = ({ asyncRequest, courseId }) => {
+const ReviewBox = ({
+  asyncRequest,
+  courseId,
+  reviews,
+  setReviews,
+}) => {
   const [review, setReview] = useState('');
   const [recommend, setRecommend] = useState('');
 
@@ -17,7 +22,7 @@ const ReviewBox = ({ asyncRequest, courseId }) => {
 
   const handleSubmit = async () => {
     if (!review || !recommend) return;
-    await asyncRequest(
+    const data = await asyncRequest(
       authAxios.post('/api/add/review', {
         data: {
           id: courseId,
@@ -26,6 +31,11 @@ const ReviewBox = ({ asyncRequest, courseId }) => {
         },
       })
     );
+
+    if (data !== 'err') {
+      const newReviews = [...reviews];
+      setReviews(newReviews);
+    }
   };
 
   return (

@@ -5,8 +5,12 @@ import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 
-const ReviewList = ({ id, asyncRequest }) => {
-  const [reviews, setReviews] = useState([]);
+const ReviewList = ({
+  id,
+  asyncRequest,
+  reviews,
+  setReviews,
+}) => {
   const [loading, setLoading] = useState(
     'Loading reviews...'
   );

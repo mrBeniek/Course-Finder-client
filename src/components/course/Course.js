@@ -11,6 +11,7 @@ import { Skeleton } from '@material-ui/lab';
 
 const Course = ({ asyncRequest }) => {
   const [course, setCourse] = useState({});
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const history = useHistory();
@@ -76,11 +77,18 @@ const Course = ({ asyncRequest }) => {
       <ReviewBox
         courseId={id}
         asyncRequest={asyncRequest}
+        reviews={reviews}
+        setReviews={setReviews}
       />
       <br />
       <hr />
       <br />
-      <ReviewList id={id} asyncRequest={asyncRequest} />
+      <ReviewList
+        id={id}
+        asyncRequest={asyncRequest}
+        reviews={reviews}
+        setReviews={setReviews}
+      />
     </Container>
   );
 };
