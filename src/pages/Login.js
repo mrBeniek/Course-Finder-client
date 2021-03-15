@@ -1,5 +1,6 @@
 import styles from './Login.module.scss';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import useCredentials from 'hooks/useCredentials';
 import SnackbarInfo from 'components/common/SnackbarInfo';
@@ -36,6 +37,10 @@ const Login = () => {
     credentialsSend('/login', payload);
   };
 
+  const handleGitHub = async () => {
+    await axios.post('/api/auth/github');
+  };
+
   return (
     <div className={styles.main}>
       <SnackbarInfo msg={msg} status={status} />
@@ -70,6 +75,15 @@ const Login = () => {
           onClick={handleLogin}
         >
           Submit
+        </Button>
+        <br />
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          onClick={handleGitHub}
+        >
+          Log in with Github
         </Button>
       </Container>
     </div>
