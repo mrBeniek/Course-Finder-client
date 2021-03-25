@@ -38,7 +38,21 @@ const Login = () => {
   };
 
   const handleGitHub = async () => {
-    await axios.post('/api/auth/github');
+    try {
+      const response = await axios.post('/api/auth/github');
+      const { data } = response;
+
+      if (response.status === 200) {
+        localStorage.setItem('authToken', data.token);
+        const state = data.state;
+        console.log(state);
+        console.log('handleGitHub done');
+        // window.location = `http://localhost:5000/api/auth/github/state/${state}`;
+      }
+    } catch (err) {
+      console.log('handleGitHub error');
+      console.log(err);
+    }
   };
 
   return (
@@ -77,6 +91,8 @@ const Login = () => {
           Submit
         </Button>
         <br />
+        {/*<a href="https://github.com/login/oauth/authorize?client_id=3f0c09eee23d08feeed5">*/}
+
         <Button
           fullWidth
           variant="contained"
