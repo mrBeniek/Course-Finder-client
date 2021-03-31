@@ -29,8 +29,9 @@ const AddCourseMain = ({ asyncRequest }) => {
       })
     );
     if (result !== 'err') {
+      const { courseId } = result;
       setTimeout(
-        () => history.push(`/course/${courseName}`),
+        () => history.push(`/course/${courseId}`),
         1000
       );
     }
