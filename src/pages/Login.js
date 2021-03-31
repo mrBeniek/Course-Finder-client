@@ -43,11 +43,11 @@ const Login = () => {
       const { data } = response;
 
       if (response.status === 200) {
-        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('token', data.token);
         const state = data.state;
         console.log(state);
         console.log('handleGitHub done');
-        // window.location = `http://localhost:5000/api/auth/github/state/${state}`;
+        window.location = `http://localhost:5000/api/auth/github/state/${state}`;
       }
     } catch (err) {
       console.log('handleGitHub error');
