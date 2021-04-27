@@ -22,13 +22,18 @@ const useCredentials = () => {
       if (response.status === 200) {
         setStatus('success');
         setMsg(data.msg);
+
         setTimeout(() => {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem(
-            'userInfo',
-            JSON.stringify(data.userInfo)
-          );
-          history.replace('/');
+          if (data.msg === 'Signup successful') {
+            history.replace('/verify/email/pending');
+          } else {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem(
+              'userInfo',
+              JSON.stringify(data.userInfo)
+            );
+            history.replace('/');
+          }
         }, 700);
       }
     } catch (err) {
