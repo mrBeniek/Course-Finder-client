@@ -1,0 +1,18 @@
+@import '_app.scss';
+
+.container {
+  @extend .flex-mid-full;
+  flex-direction: column;
+  background: rgb(210, 233, 177);
+  margin-top: 30px;
+  padding: 40px;
+  border: 3px solid black;
+}
+
+.form {
+  @extend .flex-mid-full;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  margin: 20px;
+}

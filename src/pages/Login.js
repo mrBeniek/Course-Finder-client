@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import InputField from 'components/common/InputField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const Login = () => {
   const { credentialsSend, status, msg } = useCredentials();
@@ -102,12 +103,13 @@ const Login = () => {
           Log in with Github
         </Button>
         <br />
-        <Typography
-          component="h2"
-          variant="h6"
-          onClick={() => history.push('/recovery/email')}
-        >
-          Forgot password?
+        <Typography>
+          <Link
+            href=""
+            onClick={() => history.push('/recovery/email')}
+          >
+            Forgot password?
+          </Link>
         </Typography>
       </Container>
     </div>
