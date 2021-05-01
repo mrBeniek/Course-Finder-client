@@ -101,6 +101,14 @@ const Login = () => {
         >
           Log in with Github
         </Button>
+        <br />
+        <Typography
+          component="h2"
+          variant="h6"
+          onClick={() => history.push('/recovery/email')}
+        >
+          Forgot password?
+        </Typography>
       </Container>
     </div>
   );
