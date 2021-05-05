@@ -16,11 +16,11 @@ const RecEmailMain = ({ asyncRequest }) => {
   };
 
   const handleSubmit = async () => {
-    const data = await asyncRequest(
+    const { ok, data } = await asyncRequest(
       axios.post('/api/recovery/email', { data: email })
     );
 
-    if (data !== 'err') {
+    if (ok) {
       localStorage.setItem('recToken', data.token);
       console.log(data.token);
       console.log('handleSubmit done');

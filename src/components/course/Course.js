@@ -20,12 +20,12 @@ const Course = ({ asyncRequest }) => {
 
   useEffect(() => {
     const fetchCourse = async () => {
-      const data = await asyncRequest(
+      const { ok, data } = await asyncRequest(
         axios.get(`/api/download/courses/${id}`),
         false
       );
 
-      if (data !== 'err') {
+      if (ok) {
         document.title = data.result.name;
         console.log(data.result);
         setCourse(data.result);

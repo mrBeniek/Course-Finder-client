@@ -22,7 +22,7 @@ const ReviewBox = ({
 
   const handleSubmit = async () => {
     if (!review || !recommend) return;
-    const data = await asyncRequest(
+    const { ok } = await asyncRequest(
       authAxios.post('/api/add/review', {
         data: {
           id: courseId,
@@ -32,7 +32,7 @@ const ReviewBox = ({
       })
     );
 
-    if (data !== 'err') {
+    if (ok) {
       const newReviews = [...reviews];
       setReviews(newReviews);
     }

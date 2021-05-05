@@ -25,14 +25,17 @@ const useAsync = () => {
         setTimeout(() => {
           setStatus('idle');
         }, 4500);
-        return data;
+        return { ok: true, data: data };
       }
     } catch (err) {
       console.error(err);
       const { response } = err;
       if (response.status === 404) {
         history.replace('/404');
-        return 'err';
+        return {
+          ok: false,
+          data: response.data,
+        };
       }
       if (response.status === 403) {
         setMsg(response.data.msg);
@@ -45,7 +48,10 @@ const useAsync = () => {
       setTimeout(() => {
         setStatus('idle');
       }, 4500);
-      return 'err';
+      return {
+        ok: false,
+        data: response.data,
+      };
     }
   };
 

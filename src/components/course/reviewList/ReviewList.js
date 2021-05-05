@@ -17,11 +17,11 @@ const ReviewList = ({
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const data = await asyncRequest(
+      const { ok, data } = await asyncRequest(
         axios.get(`/api/download/reviews/${id}`),
         false
       );
-      if (data !== 'err') {
+      if (ok) {
         console.log(data.result);
         setReviews(data.result);
         if (data.result.length > 1) {

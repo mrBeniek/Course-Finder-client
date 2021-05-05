@@ -19,7 +19,7 @@ const AddCourseMain = ({ asyncRequest }) => {
   };
 
   const handleSubmit = async () => {
-    const result = await asyncRequest(
+    const { ok, data } = await asyncRequest(
       authAxios.post('/api/add/course', {
         data: {
           name: courseName,
@@ -28,8 +28,8 @@ const AddCourseMain = ({ asyncRequest }) => {
         },
       })
     );
-    if (result !== 'err') {
-      const { courseId } = result;
+    if (ok) {
+      const { courseId } = data;
       setTimeout(
         () => history.push(`/course/${courseId}`),
         1000
