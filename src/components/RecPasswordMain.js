@@ -47,7 +47,10 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
     );
 
     if (ok) {
-      setTimeout(() => history.push(`/login`), 5000);
+      setTimeout(() => {
+        history.push(`/login`);
+        localStorage.removeItem('recToken');
+      }, 5000);
       console.log('Password Changed Successfuly');
     }
   };
