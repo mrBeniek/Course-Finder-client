@@ -36,7 +36,7 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
       headers: { authorization: localStorage.recToken },
     };
 
-    const { ok } = await asyncRequest(
+    const { ok, data } = await asyncRequest(
       axios.post(
         '/api/recovery/token',
         {
@@ -51,7 +51,13 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
         history.push(`/login`);
         localStorage.removeItem('recToken');
       }, 5000);
-      console.log('Password Changed Successfuly');
+    }
+
+    if (!ok && data.status === 403) {
+      setTimeout(() => {
+        history.push('/recovery/email');
+        localStorage.removeItem('recToken');
+      }, 5000);
     }
   };
 

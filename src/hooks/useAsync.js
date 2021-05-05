@@ -34,7 +34,7 @@ const useAsync = () => {
         history.replace('/404');
         return {
           ok: false,
-          data: response.data,
+          data: response,
         };
       }
       if (response.status === 403) {
@@ -50,7 +50,7 @@ const useAsync = () => {
       }, 4500);
       return {
         ok: false,
-        data: response.data,
+        data: response,
       };
     }
   };
