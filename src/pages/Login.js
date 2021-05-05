@@ -92,8 +92,6 @@ const Login = () => {
           Submit
         </Button>
         <br />
-        {/*<a href="https://github.com/login/oauth/authorize?client_id=3f0c09eee23d08feeed5">*/}
-
         <Button
           fullWidth
           variant="contained"

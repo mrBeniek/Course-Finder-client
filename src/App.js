@@ -10,6 +10,7 @@ import Course from 'pages/Course';
 import Verify from 'pages/Verify';
 import RecEmail from 'pages/RecEmail';
 import RecInfo from 'pages/RecInfo';
+import RecPassword from 'pages/RecPassword';
 import Page404 from 'pages/Page404';
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
       />
       <Route path="/recovery/email" component={RecEmail} />
       <Route path="/recovery/info" component={RecInfo} />
+      <Route
+        path="/recovery/password/:token"
+        component={RecPassword}
+      />
       <Route path="/404" component={Page404} />
       <Route path="*" component={Page404} />
     </Switch>
