@@ -3,8 +3,10 @@ import logo from 'assets/Course finder logo black.png';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Avatar from '@material-ui/core/Avatar';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 
 const Navbar = () => {
@@ -44,8 +46,18 @@ const Navbar = () => {
       </div>
 
       {loginState ? (
-        <div>
-          <div>Logged in as: {userLabel}</div>
+        <div className={styles.rightCont}>
+          <div className={styles.profileCont}>
+            <Avatar>{userLabel[0].toUpperCase()}</Avatar>
+            <Typography
+              className={styles.profileLabel}
+              component="p1"
+              variant="body1"
+            >
+              {userLabel}
+            </Typography>
+          </div>
+
           <Button color="primary" onClick={handleLogout}>
             LOG OUT
           </Button>
