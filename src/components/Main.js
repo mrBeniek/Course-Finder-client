@@ -20,6 +20,7 @@ const Main = () => {
         setCourses(data.result);
       } catch (err) {
         console.error(err);
+        setTimeout(() => fetchCourses(), 5000);
       }
     };
 
