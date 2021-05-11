@@ -1,0 +1,17 @@
+@import '_app.scss';
+
+.main {
+  @extend .flex-mid-full;
+  height: 85vh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 170px;
+}
+
+.text {
+  @extend .white-font;
+  padding: 30px;
+}
