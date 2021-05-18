@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
+import AuthGitHubInfo from 'pages/AuthGitHubInfo';
 import Auth from 'pages/Auth';
 import Signup from 'pages/Signup';
 import AddCourse from 'pages/AddCourse';
@@ -18,7 +19,11 @@ function App() {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
-      <Route path="/auth" component={Auth} />
+      <Route exact path="/auth" component={Auth} />
+      <Route
+        path="/auth/github/info/:error"
+        component={AuthGitHubInfo}
+      />
       <Route path="/signup" component={Signup} />
       <Route path="/addcourse" component={AddCourse} />
       <Route path="/course/:id" component={Course} />

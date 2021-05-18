@@ -32,6 +32,13 @@ const Auth = () => {
       } catch (err) {
         console.log('fetchToken error');
         console.log(err);
+        localStorage.removeItem('token');
+        const { response } = err;
+        if (response.status === 403) {
+          if (response.data.msg === 'email') {
+            history.replace('/auth/github/info/email');
+          }
+        }
       }
     };
     fetchToken();
