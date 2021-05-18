@@ -27,7 +27,11 @@ const Auth = () => {
             JSON.stringify(data.userInfo)
           );
           console.log('fetchToken done');
-          history.push('/');
+          if (data.msg === 'Login successful') {
+            history.replace('/');
+          } else {
+            history.replace('/auth/github/info/username');
+          }
         }
       } catch (err) {
         console.log('fetchToken error');
