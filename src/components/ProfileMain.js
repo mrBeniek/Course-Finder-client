@@ -1,8 +1,10 @@
+import styles from './ProfileMain.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
 
 const ProfileMain = ({ asyncRequest, username }) => {
@@ -32,24 +34,29 @@ const ProfileMain = ({ asyncRequest, username }) => {
   }, []);
 
   return (
-    <div>
+    <Container className={styles.container} maxWidth="md">
       {loading ? (
         <Skeleton variant="text" width="75%" height={85} />
       ) : (
-        <React.Fragment>
-          <Avatar>{username[0].toUpperCase()}</Avatar>
-          <Typography variant="h4">{username}</Typography>
-          <Typography variant="h6">COURSES:</Typography>
-          <Typography variant="h6">
-            {profile.courses}
-          </Typography>
-          <Typography variant="h6">REVIEWS:</Typography>
-          <Typography variant="h6">
-            {profile.reviews}
-          </Typography>
-        </React.Fragment>
+        <Container className={styles.topContainer}>
+          <Container className={styles.username}>
+            <Avatar className={styles.avatar}>
+              {username[0].toUpperCase()}
+            </Avatar>
+            <Typography variant="h4">{username}</Typography>
+          </Container>
+          <Container className={styles.stats}>
+            <Typography variant="h6">
+              COURSES: {profile.courses}
+            </Typography>
+
+            <Typography variant="h6">
+              REVIEWS: {profile.reviews}
+            </Typography>
+          </Container>
+        </Container>
       )}
-    </div>
+    </Container>
   );
 };
 
