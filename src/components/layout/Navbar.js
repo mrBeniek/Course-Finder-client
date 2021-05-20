@@ -47,7 +47,12 @@ const Navbar = () => {
 
       {loginState ? (
         <div className={styles.rightCont}>
-          <div className={styles.profileCont}>
+          <div
+            onClick={() =>
+              history.push(`/profile/${userLabel}`)
+            }
+            className={styles.profileCont}
+          >
             <Avatar>{userLabel[0].toUpperCase()}</Avatar>
             <Typography
               className={styles.profileLabel}
