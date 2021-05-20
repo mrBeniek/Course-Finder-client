@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
+import ButtonRedirect from './common/ButtonRedirect';
 
 const ProfileMain = ({ asyncRequest, username }) => {
   const [profile, setProfile] = useState({});
@@ -33,27 +34,42 @@ const ProfileMain = ({ asyncRequest, username }) => {
     fetchProfile();
   }, []);
 
+  const profileOwner =
+    localStorage.userInfo &&
+    JSON.parse(localStorage.userInfo).username;
+
   return (
     <Container className={styles.container} maxWidth="md">
       {loading ? (
         <Skeleton variant="text" width="75%" height={85} />
       ) : (
-        <Container className={styles.topContainer}>
-          <Container className={styles.username}>
-            <Avatar className={styles.avatar}>
-              {username[0].toUpperCase()}
-            </Avatar>
-            <Typography variant="h4">{username}</Typography>
-          </Container>
-          <Container className={styles.stats}>
-            <Typography variant="h6">
-              COURSES: {profile.courses}
-            </Typography>
+        <Container>
+          <Container className={styles.topContainer}>
+            <Container className={styles.username}>
+              <Avatar className={styles.avatar}>
+                {username[0].toUpperCase()}
+              </Avatar>
+              <Typography variant="h4">
+                {username}
+              </Typography>
+            </Container>
+            <Container className={styles.stats}>
+              <Typography variant="h6">
+                COURSES: {profile.courses}
+              </Typography>
 
-            <Typography variant="h6">
-              REVIEWS: {profile.reviews}
-            </Typography>
+              <Typography variant="h6">
+                REVIEWS: {profile.reviews}
+              </Typography>
+            </Container>
           </Container>
+          {profileOwner === username && (
+            <ButtonRedirect
+              style={styles.buttonUsername}
+              label="CHANGE USERNAME"
+              link="/"
+            />
+          )}
         </Container>
       )}
     </Container>

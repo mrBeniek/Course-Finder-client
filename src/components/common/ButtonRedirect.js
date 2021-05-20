@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 
-const ButtonRedirect = ({ label, link }) => {
+const ButtonRedirect = ({ label, link, style = null }) => {
   const history = useHistory();
 
   const handleRedirect = () => {
@@ -11,7 +11,9 @@ const ButtonRedirect = ({ label, link }) => {
 
   return (
     <React.Fragment>
-      <Button onClick={handleRedirect}>{label}</Button>
+      <Button className={style} onClick={handleRedirect}>
+        {label}
+      </Button>
     </React.Fragment>
   );
 };
