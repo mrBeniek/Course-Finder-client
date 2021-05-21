@@ -6,10 +6,16 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
+import Button from '@material-ui/core/Button';
 import ButtonRedirect from './common/ButtonRedirect';
+import InputField from './common/InputField';
+import authAxios from 'utils/authAxios';
 
 const ProfileMain = ({ asyncRequest, username }) => {
   const [profile, setProfile] = useState({});
+  const [changeUsername, setChangeUsername] =
+    useState(false);
+  const [newUsername, setNewUsername] = useState('');
   const [loading, setLoading] = useState(true);
 
   const history = useHistory();
@@ -33,6 +39,31 @@ const ProfileMain = ({ asyncRequest, username }) => {
 
     fetchProfile();
   }, []);
+
+  const handleChange = state => event => {
+    state(event.target.value);
+  };
+
+  const handleSubmitUsername = async () => {
+    console.log('NEW USERNAME IS', newUsername);
+    const { ok, data } = await asyncRequest(
+      authAxios.post('/api/change/username', {
+        data: {
+          username: newUsername,
+        },
+      })
+    );
+
+    if (ok) {
+      localStorage.setItem('token', data.token);
+      localStorage.setItem(
+        'userInfo',
+        JSON.stringify(data.userInfo)
+      );
+      document.title = `${newUsername} - Profile`;
+      history.replace(`/profile/${newUsername}`);
+    }
+  };
 
   const profileOwner =
     localStorage.userInfo &&
@@ -64,11 +95,36 @@ const ProfileMain = ({ asyncRequest, username }) => {
             </Container>
           </Container>
           {profileOwner === username && (
-            <ButtonRedirect
-              style={styles.buttonUsername}
-              label="CHANGE USERNAME"
-              link="/"
-            />
+            <Container>
+              <Button
+                onClick={() =>
+                  setChangeUsername(!changeUsername)
+                }
+                className={styles.buttonUsername}
+              >
+                CHANGE USERNAME
+              </Button>
+              {changeUsername && (
+                <React.Fragment>
+                  <InputField
+                    id="new username"
+                    label="Enter new username"
+                    type="username"
+                    autoFocus
+                    onChange={handleChange(setNewUsername)}
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmitUsername}
+                  >
+                    Submit New Username
+                  </Button>
+                </React.Fragment>
+              )}
+            </Container>
           )}
         </Container>
       )}
