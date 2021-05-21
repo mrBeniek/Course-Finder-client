@@ -1,9 +1,11 @@
 import styles from './ReviewList.module.scss';
 import Recommend from './Recommend';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
 
 const ReviewList = ({
   id,
@@ -14,6 +16,8 @@ const ReviewList = ({
   const [loading, setLoading] = useState(
     'Loading reviews...'
   );
+
+  const history = useHistory();
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -55,7 +59,16 @@ const ReviewList = ({
                 <div className={styles.nameCont}>
                   <div>
                     <Typography variant="h6">
-                      {val.author}
+                      <Link
+                        href=""
+                        onClick={() =>
+                          history.push(
+                            `/profile/${val.author}`
+                          )
+                        }
+                      >
+                        {val.author}
+                      </Link>
                     </Typography>
                     <Typography>{val.date}</Typography>
                   </div>
