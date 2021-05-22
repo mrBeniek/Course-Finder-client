@@ -5,6 +5,7 @@ import Home from 'pages/Home';
 import Login from 'pages/Login';
 import AuthGitHubInfo from 'pages/AuthGitHubInfo';
 import Auth from 'pages/Auth';
+import ChangePassword from 'pages/ChangePassword';
 import Signup from 'pages/Signup';
 import AddCourse from 'pages/AddCourse';
 import Course from 'pages/Course';
@@ -24,6 +25,10 @@ function App() {
       <Route
         path="/auth/github/info/:error"
         component={AuthGitHubInfo}
+      />
+      <Route
+        path="/change/password"
+        component={ChangePassword}
       />
       <Route path="/course/:id" component={Course} />
       <Route path="/login" component={Login} />

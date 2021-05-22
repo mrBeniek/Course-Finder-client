@@ -104,6 +104,12 @@ const ProfileMain = ({ asyncRequest, username }) => {
               >
                 CHANGE USERNAME
               </Button>
+
+              <ButtonRedirect
+                style={styles.buttonUsername}
+                label="CHANGE PASSWORD"
+                link="/change/password"
+              />
               {changeUsername && (
                 <React.Fragment>
                   <InputField
