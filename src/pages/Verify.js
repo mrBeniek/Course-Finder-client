@@ -27,7 +27,7 @@ const Verify = () => {
     if (type === 'success' || type === 'error') {
       if (type === 'success') {
         return ['/login', 5000];
-      } else return ['/', 5000];
+      } else return ['/home', 5000];
     } else if (type !== 'pending') history.replace('/404');
   };
 

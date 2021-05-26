@@ -28,7 +28,7 @@ const Auth = () => {
           );
           console.log('fetchToken done');
           if (data.msg === 'Login successful') {
-            history.replace('/');
+            history.replace('/home');
           } else {
             history.replace('/auth/github/info/username');
           }

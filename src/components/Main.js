@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { Pagination } from '@material-ui/lab';
 
 const Main = () => {
   const [courses, setCourses] = useState([]);
@@ -47,8 +48,11 @@ const Main = () => {
           </Container>
         );
       })}
-
-      <Typography paragraph></Typography>
+      <Pagination
+        className={styles.pagination}
+        size="large"
+        count={10}
+      />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import styles from './ChangePasswordMain.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import InputField from 'components/common/InputField';
 import Button from '@material-ui/core/Button';
@@ -17,7 +16,7 @@ const ChangePasswordMain = ({ asyncRequest }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (!localStorage.token) history.replace('/');
+    if (!localStorage.token) history.replace('/home');
   });
 
   const handleChange = state => event => {

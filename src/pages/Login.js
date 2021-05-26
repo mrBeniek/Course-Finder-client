@@ -18,7 +18,7 @@ const Login = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (localStorage.token) history.replace('/');
+    if (localStorage.token) history.replace('/home');
   });
 
   useEffect(() => {

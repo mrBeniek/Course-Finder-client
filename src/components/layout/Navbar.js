@@ -33,7 +33,7 @@ const Navbar = () => {
     <Container className={styles.container} maxWidth="xl">
       <div className={styles.leftCont}>
         <img
-          onClick={() => history.push('/')}
+          onClick={() => history.push('/home')}
           className={styles.logo}
           src={logo}
           alt="asdf"

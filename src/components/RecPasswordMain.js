@@ -15,7 +15,7 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (!localStorage.recToken) history.replace('/');
+    if (!localStorage.recToken) history.replace('/home');
   });
 
   const handleChange = state => event => {

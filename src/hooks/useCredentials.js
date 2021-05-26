@@ -32,7 +32,7 @@ const useCredentials = () => {
               'userInfo',
               JSON.stringify(data.userInfo)
             );
-            history.replace('/');
+            history.replace('/home');
           }
         }, 700);
       }

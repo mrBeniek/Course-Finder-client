@@ -1,6 +1,6 @@
 import './_app.scss';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import AuthGitHubInfo from 'pages/AuthGitHubInfo';
@@ -19,7 +19,10 @@ import Profile from 'pages/Profile';
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/">
+        <Redirect to="/home" />
+      </Route>
+      <Route exact path="/home" component={Home} />
       <Route path="/addcourse" component={AddCourse} />
       <Route exact path="/auth" component={Auth} />
       <Route
