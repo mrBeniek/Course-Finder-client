@@ -21,7 +21,7 @@ const Course = ({ asyncRequest }) => {
   useEffect(() => {
     const fetchCourse = async () => {
       const { ok, data } = await asyncRequest(
-        axios.get(`/api/download/courses/${id}`),
+        axios.get(`/api/download/course/${id}`),
         false
       );
 
