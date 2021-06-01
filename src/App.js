@@ -23,6 +23,7 @@ function App() {
         <Redirect to="/home" />
       </Route>
       <Route exact path="/home" component={Home} />
+      <Route path="/home/page/:page" component={Home} />
       <Route path="/addcourse" component={AddCourse} />
       <Route exact path="/auth" component={Auth} />
       <Route
