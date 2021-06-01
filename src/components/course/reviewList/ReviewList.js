@@ -6,6 +6,7 @@ import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
+import { Pagination } from '@material-ui/lab';
 
 const ReviewList = ({
   id,
@@ -16,18 +17,28 @@ const ReviewList = ({
   const [loading, setLoading] = useState(
     'Loading reviews...'
   );
+  const [pageCount, setPageCount] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const history = useHistory();
 
   useEffect(() => {
     const fetchReviews = async () => {
+      let count = false;
+      if (!pageCount) {
+        count = true;
+      }
+
       const { ok, data } = await asyncRequest(
-        axios.get(`/api/download/reviews/${id}`),
+        axios.get(
+          `/api/download/reviews/${id}/page/${currentPage}/count/${count}`
+        ),
         false
       );
       if (ok) {
         console.log(data.result);
         setReviews(data.result);
+        if (data.pageCount) setPageCount(data.pageCount);
         if (data.result.length > 1) {
           setLoading(false);
         } else {
@@ -36,7 +47,11 @@ const ReviewList = ({
       }
     };
     if (id.length === 24) fetchReviews();
-  }, [id]);
+  }, [currentPage]);
+
+  const handlePage = (e, value) => {
+    setCurrentPage(value);
+  };
 
   return (
     <Container>
@@ -85,6 +100,13 @@ const ReviewList = ({
               </Container>
             );
           })}
+          <Pagination
+            className={styles.pagination}
+            onChange={handlePage}
+            size="large"
+            page={currentPage}
+            count={pageCount}
+          />
         </React.Fragment>
       )}
     </Container>
