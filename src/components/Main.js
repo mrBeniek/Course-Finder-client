@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Pagination } from '@material-ui/lab';
 
-const Main = () => {
+const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([]);
   const [pageCount, setPageCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,8 +17,9 @@ const Main = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const { data } = await axios.get(
-          `/api/download/courses/${page}`
+        const { data } = await asyncRequest(
+          axios.get(`/api/download/courses/${page}`),
+          false
         );
         console.log(data.result);
         setCourses(data.result);
