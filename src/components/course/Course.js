@@ -44,7 +44,14 @@ const Course = ({ asyncRequest }) => {
       {loading ? (
         <Skeleton variant="text" width="75%" height={85} />
       ) : (
-        <Typography variant="h4">{course.name}</Typography>
+        <React.Fragment>
+          <Typography variant="h4">
+            {course.name}
+          </Typography>
+          <Typography variant="subtitle2">
+            Date added: {course.date}
+          </Typography>
+        </React.Fragment>
       )}
 
       <br />
@@ -63,7 +70,7 @@ const Course = ({ asyncRequest }) => {
             target="_blank"
             rel="noreferrer"
           >
-            {course.link}
+            <b>{course.link}</b>
           </a>
           <Typography className={styles.desc} paragraph>
             {course.description}
