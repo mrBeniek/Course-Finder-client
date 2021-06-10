@@ -38,11 +38,12 @@ const Navbar = () => {
           src={logo}
           alt="asdf"
         />
-
-        <ButtonRedirect
-          label="Add Course"
-          link="/addcourse"
-        />
+        {loginState && (
+          <ButtonRedirect
+            label="Add Course"
+            link="/addcourse"
+          />
+        )}
       </div>
 
       {loginState ? (
