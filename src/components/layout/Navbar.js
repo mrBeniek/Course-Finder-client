@@ -1,6 +1,6 @@
 import styles from './Navbar.module.scss';
 import logo from 'assets/Course finder logo black.png';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -9,15 +9,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Avatar from '@material-ui/core/Avatar';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 
-const Navbar = () => {
-  const [loginState, setLoginState] = useState(false);
-
+const Navbar = ({ loginState, setLoginState }) => {
   const history = useHistory();
-
-  useEffect(() => {
-    if (localStorage.token) setLoginState(true);
-    else setLoginState(false);
-  }, [loginState]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');

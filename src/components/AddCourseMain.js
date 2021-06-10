@@ -1,5 +1,5 @@
 import styles from './AddCourseMain.module.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import authAxios from 'utils/authAxios';
 import InputField from 'components/common/InputField';
@@ -7,12 +7,16 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const AddCourseMain = ({ asyncRequest }) => {
+const AddCourseMain = ({ asyncRequest, loginState }) => {
   const [courseName, setCourseName] = useState('');
   const [courseLink, setCourseLink] = useState('');
   const [courseDesc, setCourseDesc] = useState('');
 
   const history = useHistory();
+
+  useEffect(() => {
+    if (!localStorage.token) history.push('/');
+  });
 
   const handleChange = state => event => {
     state(event.target.value);
