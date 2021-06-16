@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Pagination } from '@material-ui/lab';
 import SkeletonCourses from './common/SkeletonCourses';
+import CourseLogo from './common/CourseLogo';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
@@ -61,9 +62,13 @@ const Main = ({ asyncRequest }) => {
               <SkeletonCourses />
             ) : (
               <Fragment>
-                <Typography variant="h4">
-                  {val.name}
-                </Typography>
+                <div className={styles.containerName}>
+                  <Typography variant="h4">
+                    {val.name}
+                  </Typography>
+                  <CourseLogo logo="udemy" />
+                </div>
+
                 <hr />
                 <Typography paragraph>
                   {val.description}

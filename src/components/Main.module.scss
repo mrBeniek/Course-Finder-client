@@ -1,5 +1,5 @@
 .main {
-  padding-top: 2vh;
+  padding: 0 5px;
 }
 
 .container {
@@ -8,6 +8,11 @@
   margin-top: 20px;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+.containerName {
+  display: flex;
+  justify-content: space-between;
 }
 
 .pagination {
