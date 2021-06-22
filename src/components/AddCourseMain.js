@@ -6,10 +6,15 @@ import InputField from 'components/common/InputField';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const AddCourseMain = ({ asyncRequest, loginState }) => {
   const [courseName, setCourseName] = useState('');
   const [courseLink, setCourseLink] = useState('');
+  const [courseSource, setCourseSource] = useState('');
   const [courseDesc, setCourseDesc] = useState('');
 
   const history = useHistory();
@@ -28,6 +33,7 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
         data: {
           name: courseName,
           link: courseLink,
+          source: courseSource,
           description: courseDesc,
         },
       })
@@ -57,6 +63,30 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
         value={courseLink}
         onChange={handleChange(setCourseLink)}
       />
+
+      <FormControl
+        className={styles.formSource}
+        margin="normal"
+        size="small"
+        variant="filled"
+        required
+      >
+        <InputLabel id="course-source-label">
+          Source
+        </InputLabel>
+        <Select
+          labelId="course-source-label"
+          id="course-source-select"
+          value={courseSource}
+          variant="filled"
+          onChange={handleChange(setCourseSource)}
+        >
+          <MenuItem value={'Udemy'}>Udemy</MenuItem>
+          <MenuItem value={'Youtube'}>Youtube</MenuItem>
+          <MenuItem value={'Other'}>Other</MenuItem>
+        </Select>
+      </FormControl>
+
       <InputField
         label="Description"
         value={courseDesc}

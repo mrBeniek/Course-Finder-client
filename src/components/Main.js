@@ -66,7 +66,7 @@ const Main = ({ asyncRequest }) => {
                   <Typography variant="h4">
                     {val.name}
                   </Typography>
-                  <CourseLogo logo="udemy" />
+                  <CourseLogo logo={val.source} />
                 </div>
 
                 <hr />
