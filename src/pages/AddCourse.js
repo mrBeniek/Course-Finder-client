@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from 'components/layout/Layout';
-import AddCourseMain from 'components/AddCourseMain';
+import AddCourseMain from 'components/addCourse/AddCourseMain';
 
 const Home = () => {
   return (

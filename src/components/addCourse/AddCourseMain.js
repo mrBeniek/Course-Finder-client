@@ -10,11 +10,13 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import AddCourseLangAccordion from './AddCourseLangAccordion';
 
 const AddCourseMain = ({ asyncRequest, loginState }) => {
   const [courseName, setCourseName] = useState('');
   const [courseLink, setCourseLink] = useState('');
   const [courseSource, setCourseSource] = useState('');
+  const [courseStack, setCourseStack] = useState([]);
   const [courseDesc, setCourseDesc] = useState('');
 
   const history = useHistory();
@@ -34,6 +36,7 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
           name: courseName,
           link: courseLink,
           source: courseSource,
+          stack: courseStack,
           description: courseDesc,
         },
       })
@@ -81,12 +84,15 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
           variant="filled"
           onChange={handleChange(setCourseSource)}
         >
-          <MenuItem value={'Udemy'}>Udemy</MenuItem>
-          <MenuItem value={'Youtube'}>Youtube</MenuItem>
-          <MenuItem value={'Other'}>Other</MenuItem>
+          <MenuItem value={'udemy'}>Udemy</MenuItem>
+          <MenuItem value={'youtube'}>Youtube</MenuItem>
+          <MenuItem value={'other'}>Other</MenuItem>
         </Select>
       </FormControl>
-
+      <AddCourseLangAccordion
+        courseStack={courseStack}
+        setCourseStack={setCourseStack}
+      />
       <InputField
         label="Description"
         value={courseDesc}
