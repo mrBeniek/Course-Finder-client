@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
+import TagsStack from 'components/common/TagsStack';
 
 const Course = ({ asyncRequest }) => {
   const [course, setCourse] = useState({});
@@ -51,6 +52,12 @@ const Course = ({ asyncRequest }) => {
           <Typography variant="subtitle2">
             Date added: {course.date}
           </Typography>
+          <br />
+          <div>
+            {course.stack.map(val => {
+              return <TagsStack label={val} />;
+            })}
+          </div>
         </React.Fragment>
       )}
 
