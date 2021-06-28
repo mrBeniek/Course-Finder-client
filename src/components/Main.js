@@ -68,7 +68,8 @@ const Main = ({ asyncRequest }) => {
                     <Typography variant="h4">
                       {val.name}
                     </Typography>
-                    <div>
+
+                    <div className={styles.tags}>
                       {val.stack.map(val => {
                         return <TagsStack label={val} />;
                       })}
