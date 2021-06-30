@@ -39,7 +39,7 @@ const ReviewList = ({
         console.log(data.result);
         setReviews(data.result);
         if (data.pageCount) setPageCount(data.pageCount);
-        if (data.result.length > 1) {
+        if (data.result.length > 0) {
           setLoading(false);
         } else {
           setLoading('No reviews yet!');
