@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
 import TagsStack from 'components/common/TagsStack';
+import CourseRating from 'components/common/CourseRating';
 
 const Course = ({ asyncRequest }) => {
   const [course, setCourse] = useState({});
@@ -46,9 +47,13 @@ const Course = ({ asyncRequest }) => {
         <Skeleton variant="text" width="75%" height={85} />
       ) : (
         <React.Fragment>
-          <Typography variant="h4">
-            {course.name}
-          </Typography>
+          <div className={styles.containerName}>
+            <CourseRating reviews={course.reviews} />
+            <Typography variant="h4">
+              {course.name}
+            </Typography>
+          </div>
+
           <Typography variant="subtitle2">
             Date added: {course.date}
           </Typography>

@@ -12,6 +12,7 @@ import { Pagination } from '@material-ui/lab';
 import SkeletonCourses from './common/SkeletonCourses';
 import CourseLogo from './common/CourseLogo';
 import TagsStack from './common/TagsStack';
+import CourseRating from './common/CourseRating';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
@@ -63,11 +64,14 @@ const Main = ({ asyncRequest }) => {
               <SkeletonCourses />
             ) : (
               <Fragment>
-                <div className={styles.containerName}>
+                <div className={styles.containerInfo}>
                   <div>
-                    <Typography variant="h4">
-                      {val.name}
-                    </Typography>
+                    <div className={styles.containerName}>
+                      <CourseRating reviews={val.reviews} />
+                      <Typography variant="h4">
+                        {val.name}
+                      </Typography>
+                    </div>
 
                     <div className={styles.tags}>
                       {val.stack.map(val => {

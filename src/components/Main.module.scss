@@ -10,9 +10,13 @@
   cursor: pointer;
 }
 
-.containerName {
+.containerInfo {
   display: flex;
   justify-content: space-between;
+}
+
+.containerName {
+  display: flex;
 }
 
 .tags {

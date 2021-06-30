@@ -1,0 +1,14 @@
+@import '_app.scss';
+
+.container {
+  @extend .flex-mid-full;
+
+  min-width: 55px;
+  height: 40px;
+
+  margin-right: 10px;
+}
+
+.typography {
+  font-size: 1.1em;
+}
