@@ -40,7 +40,7 @@ const CourseRating = ({ reviews }) => {
         className={styles.typography}
         variant="subtitle2"
       >
-        {!RATING ? 'NEW' : RATING + '%'}
+        {Number.isNaN(RATING) ? 'NEW' : RATING + '%'}
       </Typography>
     </Paper>
   );
