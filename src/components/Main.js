@@ -13,6 +13,7 @@ import SkeletonCourses from './common/SkeletonCourses';
 import CourseLogo from './common/CourseLogo';
 import TagsStack from './common/TagsStack';
 import CourseRating from './common/CourseRating';
+import Grow from '@material-ui/core/Grow';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
@@ -47,49 +48,57 @@ const Main = ({ asyncRequest }) => {
     history.push(`/home/page/${value}`);
   };
 
+  const DELAY = [
+    0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500,
+  ];
+
   return (
     <div className={styles.main}>
       {courses.map((val, index) => {
         return (
-          <Container
-            className={styles.container}
-            maxWidth="lg"
-            key={index}
-            onClick={() => {
-              if (!loading)
-                history.push(`/course/${val._id}`);
-            }}
-          >
-            {loading ? (
-              <SkeletonCourses />
-            ) : (
-              <Fragment>
-                <div className={styles.containerInfo}>
-                  <div>
-                    <div className={styles.containerName}>
-                      <CourseRating reviews={val.reviews} />
-                      <Typography variant="h4">
-                        {val.name}
-                      </Typography>
+          <Grow in={!loading} timeout={DELAY[index]}>
+            <Container
+              className={styles.container}
+              maxWidth="lg"
+              key={index}
+              onClick={() => {
+                if (!loading)
+                  history.push(`/course/${val._id}`);
+              }}
+            >
+              {loading ? (
+                <SkeletonCourses />
+              ) : (
+                <Fragment>
+                  <div className={styles.containerInfo}>
+                    <div>
+                      <div className={styles.containerName}>
+                        <CourseRating
+                          reviews={val.reviews}
+                        />
+                        <Typography variant="h4">
+                          {val.name}
+                        </Typography>
+                      </div>
+
+                      <div className={styles.tags}>
+                        {val.stack.map(val => {
+                          return <TagsStack label={val} />;
+                        })}
+                      </div>
                     </div>
 
-                    <div className={styles.tags}>
-                      {val.stack.map(val => {
-                        return <TagsStack label={val} />;
-                      })}
-                    </div>
+                    <CourseLogo logo={val.source} />
                   </div>
 
-                  <CourseLogo logo={val.source} />
-                </div>
-
-                <hr />
-                <Typography paragraph>
-                  {val.description}
-                </Typography>
-              </Fragment>
-            )}
-          </Container>
+                  <hr />
+                  <Typography paragraph>
+                    {val.description}
+                  </Typography>
+                </Fragment>
+              )}
+            </Container>
+          </Grow>
         );
       })}
       {!loading && (
