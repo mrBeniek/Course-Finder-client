@@ -1,0 +1,16 @@
+.reviewsCont {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.positive {
+  color: #99f702;
+  border-right: 1px white solid;
+  padding-right: 10px;
+}
+
+.negative {
+  color: #f59a9f;
+  border-left: 1px white solid;
+  padding-left: 10px;
+}

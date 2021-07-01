@@ -1,7 +1,9 @@
 import styles from './CourseRating.module.scss';
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import CourseRatingTooltip from './CourseRatingTooltip';
 
 const CourseRating = ({ reviews }) => {
   const RATING = Math.floor(
@@ -30,19 +32,25 @@ const CourseRating = ({ reviews }) => {
   };
 
   return (
-    <Paper
-      className={styles.container}
-      style={{
-        background: COLOR(),
-      }}
+    <Tooltip
+      title={<CourseRatingTooltip reviews={reviews} />}
+      placement="bottom-start"
+      arrow
     >
-      <Typography
-        className={styles.typography}
-        variant="subtitle2"
+      <Paper
+        className={styles.container}
+        style={{
+          background: COLOR(),
+        }}
       >
-        {Number.isNaN(RATING) ? 'NEW' : RATING + '%'}
-      </Typography>
-    </Paper>
+        <Typography
+          className={styles.typography}
+          variant="subtitle2"
+        >
+          {Number.isNaN(RATING) ? 'NEW' : RATING + '%'}
+        </Typography>
+      </Paper>
+    </Tooltip>
   );
 };
 
