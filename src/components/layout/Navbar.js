@@ -9,6 +9,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Avatar from '@material-ui/core/Avatar';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 import NavbarSearchBar from './NavbarSearchBar';
+import Divider from '@material-ui/core/Divider';
 
 const Navbar = ({ loginState, setLoginState }) => {
   const history = useHistory();
@@ -37,12 +38,17 @@ const Navbar = ({ loginState, setLoginState }) => {
 
       {loginState ? (
         <div className={styles.rightCont}>
-          {loginState && (
-            <ButtonRedirect
-              label="Add Course"
-              link="/addcourse"
-            />
-          )}
+          <Divider
+            orientation="vertical"
+            variant="middle"
+            flexItem
+            light
+          />
+
+          <ButtonRedirect
+            label="Add Course"
+            link="/addcourse"
+          />
           <div
             onClick={() =>
               history.push(`/profile/${userLabel}`)
