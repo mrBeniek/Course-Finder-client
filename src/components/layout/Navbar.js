@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Avatar from '@material-ui/core/Avatar';
 import ButtonRedirect from 'components/common/ButtonRedirect';
+import NavbarSearchBar from './NavbarSearchBar';
 
 const Navbar = ({ loginState, setLoginState }) => {
   const history = useHistory();
@@ -31,6 +32,7 @@ const Navbar = ({ loginState, setLoginState }) => {
           src={logo}
           alt="asdf"
         />
+        <NavbarSearchBar className={styles.search} />
       </div>
 
       {loginState ? (
