@@ -31,16 +31,16 @@ const Navbar = ({ loginState, setLoginState }) => {
           src={logo}
           alt="asdf"
         />
-        {loginState && (
-          <ButtonRedirect
-            label="Add Course"
-            link="/addcourse"
-          />
-        )}
       </div>
 
       {loginState ? (
         <div className={styles.rightCont}>
+          {loginState && (
+            <ButtonRedirect
+              label="Add Course"
+              link="/addcourse"
+            />
+          )}
           <div
             onClick={() =>
               history.push(`/profile/${userLabel}`)
