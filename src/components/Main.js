@@ -4,7 +4,11 @@ import React, {
   useEffect,
   Fragment,
 } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import {
+  useHistory,
+  useParams,
+  useLocation,
+} from 'react-router-dom';
 import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -22,13 +26,33 @@ const Main = ({ asyncRequest }) => {
   const [loading, setLoading] = useState(true);
 
   let { page } = useParams();
+  const query = new URLSearchParams(useLocation().search);
+  const queryString = query.toString();
   const history = useHistory();
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
+        // let response;
+        // if (query.get('s')) {
+        //   const name = query.get('name');
+        //   response = await asyncRequest(
+        //     axios.get(
+        //       `/api/download/search/${page}?name=${name}`
+        //     ),
+        //     false
+        //   );
+        // } else {
+        //   response = await asyncRequest(
+        //     axios.get(`/api/download/courses/${page}`),
+        //     false
+        //   );
+        // }
+        // const { data } = response;
         const { data } = await asyncRequest(
-          axios.get(`/api/download/courses/${page}`),
+          axios.get(
+            `/api/download/courses/${page}?${queryString}`
+          ),
           false
         );
         console.log(data.result);
@@ -42,7 +66,7 @@ const Main = ({ asyncRequest }) => {
       }
     };
     fetchCourses();
-  }, [page]);
+  }, [page, queryString]);
 
   const handlePage = (e, value) => {
     history.push(`/home/page/${value}`);

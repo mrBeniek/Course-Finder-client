@@ -24,6 +24,7 @@ function App() {
       </Route>
       <Route exact path="/home" component={Home} />
       <Route path="/home/page/:page" component={Home} />
+      <Route path="/search/page/:page" component={Home} />
       <Route path="/addcourse" component={AddCourse} />
       <Route exact path="/auth" component={Auth} />
       <Route
