@@ -100,13 +100,15 @@ const ReviewList = ({
               </Container>
             );
           })}
-          <Pagination
-            className={styles.pagination}
-            onChange={handlePage}
-            size="large"
-            page={currentPage}
-            count={pageCount}
-          />
+          {pageCount > 1 && (
+            <Pagination
+              className={styles.pagination}
+              onChange={handlePage}
+              size="large"
+              page={currentPage}
+              count={pageCount}
+            />
+          )}
         </React.Fragment>
       )}
     </Container>

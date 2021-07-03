@@ -125,7 +125,7 @@ const Main = ({ asyncRequest }) => {
           </Grow>
         );
       })}
-      {!loading && (
+      {pageCount > 1 && (
         <Pagination
           className={styles.pagination}
           onChange={handlePage}
