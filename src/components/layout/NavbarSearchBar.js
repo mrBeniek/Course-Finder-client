@@ -8,12 +8,9 @@ import ButtonRedirect from 'components/common/ButtonRedirect';
 import { Container } from '@material-ui/core';
 import NavbarFilters from './NavbarFilters';
 
-const NavbarSearchBar = ({
-  courseStack,
-  setCourseStack,
-  ...props
-}) => {
+const NavbarSearchBar = ({ ...props }) => {
   const [searchValue, setSearchValue] = useState('');
+  const [courseStack, setCourseStack] = useState([]);
 
   const history = useHistory();
 
