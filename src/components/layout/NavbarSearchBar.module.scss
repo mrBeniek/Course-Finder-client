@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 10px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.button {
+  max-height: 40px;
+  margin-left: 10px;
+}

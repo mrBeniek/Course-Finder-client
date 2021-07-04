@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import styles from './NavbarSearchBar.module.scss';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
+import ButtonRedirect from 'components/common/ButtonRedirect';
+import { Container } from '@material-ui/core';
 
 const NavbarSearchBar = ({ ...props }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -13,14 +16,25 @@ const NavbarSearchBar = ({ ...props }) => {
     state(event.target.value);
   };
 
+  const handleSearch = () => {
+    if (!searchValue) return;
+
+    let uri = `/search/page/1?`;
+    if (searchValue) {
+      uri = uri.concat('', `name=${searchValue}&`);
+    }
+
+    history.push(uri);
+  };
+
   const handleKeyPress = event => {
     if (event.key === 'Enter') {
-      history.push(`/search/page/1?name=${searchValue}`);
+      handleSearch();
     }
   };
 
   return (
-    <React.Fragment>
+    <Container className={styles.container}>
       <TextField
         InputProps={{
           startAdornment: (
@@ -37,7 +51,14 @@ const NavbarSearchBar = ({ ...props }) => {
         autoFocus
         {...props}
       />
-    </React.Fragment>
+      <ButtonRedirect
+        className={styles.button}
+        label="Search"
+        onClick={handleSearch}
+        variant="contained"
+        color="primary"
+      />
+    </Container>
   );
 };
 
