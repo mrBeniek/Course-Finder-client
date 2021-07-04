@@ -6,8 +6,13 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 import { Container } from '@material-ui/core';
+import NavbarFilters from './NavbarFilters';
 
-const NavbarSearchBar = ({ ...props }) => {
+const NavbarSearchBar = ({
+  courseStack,
+  setCourseStack,
+  ...props
+}) => {
   const [searchValue, setSearchValue] = useState('');
 
   const history = useHistory();
@@ -35,28 +40,34 @@ const NavbarSearchBar = ({ ...props }) => {
 
   return (
     <Container className={styles.container}>
-      <TextField
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}
-        value={searchValue}
-        onChange={handleChange(setSearchValue)}
-        onKeyPress={handleKeyPress}
-        placeholder="Search..."
-        margin="normal"
-        autoFocus
-        {...props}
-      />
-      <ButtonRedirect
-        className={styles.button}
-        label="Search"
-        onClick={handleSearch}
-        variant="contained"
-        color="primary"
+      <Container className={styles.containerSearch}>
+        <TextField
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          value={searchValue}
+          onChange={handleChange(setSearchValue)}
+          onKeyPress={handleKeyPress}
+          placeholder="Search..."
+          margin="normal"
+          autoFocus
+          {...props}
+        />
+        <ButtonRedirect
+          className={styles.button}
+          label="Search"
+          onClick={handleSearch}
+          variant="contained"
+          color="primary"
+        />
+      </Container>
+      <NavbarFilters
+        courseStack={courseStack}
+        setCourseStack={setCourseStack}
       />
     </Container>
   );

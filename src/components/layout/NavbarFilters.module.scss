@@ -1,0 +1,22 @@
+.form {
+  max-width: 120px;
+  max-height: 46px;
+
+  border: 1.5px solid black;
+  margin-top: 8px;
+}
+
+.accordionSummary {
+  margin-left: 5px;
+}
+
+.accordionDetails {
+  display: flex;
+  flex-wrap: wrap;
+
+  min-width: 500px;
+  margin-top: -10px;
+  margin-left: -2px;
+  background: white;
+  border: 1.5px solid black;
+}

@@ -1,5 +1,10 @@
 .container {
   display: flex;
+  justify-content: center;
+}
+
+.containerSearch {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;

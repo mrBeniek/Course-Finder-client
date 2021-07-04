@@ -1,6 +1,6 @@
 import styles from './Navbar.module.scss';
 import logo from 'assets/Course finder logo black.png';
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +12,7 @@ import NavbarSearchBar from './NavbarSearchBar';
 import Divider from '@material-ui/core/Divider';
 
 const Navbar = ({ loginState, setLoginState }) => {
+  const [courseStack, setCourseStack] = useState([]);
   const history = useHistory();
 
   const handleLogout = () => {
@@ -33,7 +34,11 @@ const Navbar = ({ loginState, setLoginState }) => {
           src={logo}
           alt="asdf"
         />
-        <NavbarSearchBar className={styles.search} />
+        <NavbarSearchBar
+          className={styles.search}
+          courseStack={courseStack}
+          setCourseStack={setCourseStack}
+        />
       </div>
 
       {loginState ? (
