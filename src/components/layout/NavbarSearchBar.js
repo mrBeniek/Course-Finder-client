@@ -19,11 +19,17 @@ const NavbarSearchBar = ({ ...props }) => {
   };
 
   const handleSearch = () => {
-    if (!searchValue) return;
+    if (!searchValue && !courseStack) return;
 
     let uri = `/search/page/1?`;
     if (searchValue) {
       uri = uri.concat('', `name=${searchValue}&`);
+    }
+
+    if (courseStack) {
+      courseStack.forEach(val => {
+        uri = uri.concat('', `stack=${val}`);
+      });
     }
 
     history.push(uri);
