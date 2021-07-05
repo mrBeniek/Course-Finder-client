@@ -69,7 +69,9 @@ const Main = ({ asyncRequest }) => {
   }, [page, queryString]);
 
   const handlePage = (e, value) => {
-    history.push(`/home/page/${value}`);
+    if (query.get('s')) {
+      history.push(`/search/page/${value}?${queryString}`);
+    } else history.push(`/home/page/${value}`);
   };
 
   const DELAY = [

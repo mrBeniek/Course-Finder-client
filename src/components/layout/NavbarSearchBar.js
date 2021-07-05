@@ -21,7 +21,7 @@ const NavbarSearchBar = ({ ...props }) => {
   const handleSearch = () => {
     if (!searchValue && !courseStack) return;
 
-    let uri = `/search/page/1?`;
+    let uri = `/search/page/1?s=y&`;
     if (searchValue) {
       uri = uri.concat('', `name=${searchValue}&`);
     }
