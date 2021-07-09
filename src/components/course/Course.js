@@ -55,7 +55,7 @@ const Course = ({ asyncRequest }) => {
           </div>
 
           <Typography variant="subtitle2">
-            Date added: {course.date}
+            Date created: {course.date.split('T')[0]}
           </Typography>
           <br />
           <div>

@@ -1,6 +1,8 @@
+import 'date-fns';
 import styles from './AddCourseMain.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import DateFnsUtils from '@date-io/date-fns';
 import authAxios from 'utils/authAxios';
 import InputField from 'components/common/InputField';
 import Container from '@material-ui/core/Container';
@@ -11,11 +13,18 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import AddCourseLangAccordion from './AddCourseLangAccordion';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const AddCourseMain = ({ asyncRequest, loginState }) => {
   const [courseName, setCourseName] = useState('');
   const [courseLink, setCourseLink] = useState('');
   const [courseSource, setCourseSource] = useState('');
+  const [courseDate, setCourseDate] = useState(
+    new Date(Date.now())
+  );
   const [courseStack, setCourseStack] = useState([]);
   const [courseDesc, setCourseDesc] = useState('');
 
@@ -29,6 +38,10 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
     state(event.target.value);
   };
 
+  const handleDateChange = date => {
+    setCourseDate(date);
+  };
+
   const handleSubmit = async () => {
     const { ok, data } = await asyncRequest(
       authAxios.post('/api/add/course', {
@@ -36,6 +49,7 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
           name: courseName,
           link: courseLink,
           source: courseSource,
+          date: courseDate,
           stack: courseStack,
           description: courseDesc,
         },
@@ -66,29 +80,46 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
         value={courseLink}
         onChange={handleChange(setCourseLink)}
       />
-
-      <FormControl
-        className={styles.formSource}
-        margin="normal"
-        size="small"
-        variant="filled"
-        required
-      >
-        <InputLabel id="course-source-label">
-          Source
-        </InputLabel>
-        <Select
-          labelId="course-source-label"
-          id="course-source-select"
-          value={courseSource}
+      <div>
+        <FormControl
+          className={styles.formSource}
+          margin="normal"
+          size="small"
           variant="filled"
-          onChange={handleChange(setCourseSource)}
+          required
         >
-          <MenuItem value={'udemy'}>Udemy</MenuItem>
-          <MenuItem value={'youtube'}>Youtube</MenuItem>
-          <MenuItem value={'other'}>Other</MenuItem>
-        </Select>
-      </FormControl>
+          <InputLabel id="course-source-label">
+            Source
+          </InputLabel>
+          <Select
+            labelId="course-source-label"
+            id="course-source-select"
+            value={courseSource}
+            variant="filled"
+            onChange={handleChange(setCourseSource)}
+          >
+            <MenuItem value={'udemy'}>Udemy</MenuItem>
+            <MenuItem value={'youtube'}>Youtube</MenuItem>
+            <MenuItem value={'other'}>Other</MenuItem>
+          </Select>
+        </FormControl>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            className={styles.datePicker}
+            disableToolbar
+            variant="inline"
+            format="MM/dd/yyyy"
+            margin="normal"
+            id="date-picker-inline"
+            label="When was it posted?"
+            value={courseDate}
+            onChange={handleDateChange}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+        </MuiPickersUtilsProvider>
+      </div>
       <AddCourseLangAccordion
         courseStack={courseStack}
         setCourseStack={setCourseStack}
