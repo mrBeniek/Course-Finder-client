@@ -18,11 +18,16 @@ import CourseLogo from './common/CourseLogo';
 import TagsStack from './common/TagsStack';
 import CourseRating from './common/CourseRating';
 import Grow from '@material-ui/core/Grow';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
   const [pageCount, setPageCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sort, setSort] = useState('datea');
   const [loading, setLoading] = useState(true);
 
   let { page } = useParams();
@@ -69,9 +74,17 @@ const Main = ({ asyncRequest }) => {
   }, [page, queryString]);
 
   const handlePage = (e, value) => {
+    console.log(queryString);
     if (query.get('s')) {
       history.push(`/search/page/${value}?${queryString}`);
     } else history.push(`/home/page/${value}`);
+  };
+
+  const handleSortChange = state => event => {
+    state(event.target.value);
+    query.set('sort', event.target.value);
+    query.toString();
+    history.push(`/search/page/1?${query}`);
   };
 
   const DELAY = [
@@ -80,6 +93,39 @@ const Main = ({ asyncRequest }) => {
 
   return (
     <div className={styles.main}>
+      <div className={styles.sortCont}>
+        <FormControl
+          className={styles.formSort}
+          margin="normal"
+          size="small"
+          variant="filled"
+          required
+        >
+          <InputLabel id="course-source-label">
+            SORT BY
+          </InputLabel>
+          <Select
+            labelId="course-source-label"
+            id="course-source-select"
+            value={sort}
+            variant="filled"
+            onChange={handleSortChange(setSort)}
+          >
+            <MenuItem value={'datea'}>
+              Date created: ascending
+            </MenuItem>
+            <MenuItem value={'dated'}>
+              Date created: descending
+            </MenuItem>
+            <MenuItem value={'ratinga'}>
+              Rating: ascending
+            </MenuItem>
+            <MenuItem value={'ratingd'}>
+              Rating: descending
+            </MenuItem>
+          </Select>
+        </FormControl>
+      </div>
       {courses.map((val, index) => {
         return (
           <Grow in={!loading} timeout={DELAY[index]}>
