@@ -1,6 +1,6 @@
 import styles from './NavbarSearchBar.module.scss';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
@@ -13,6 +13,7 @@ const NavbarSearchBar = ({ ...props }) => {
   const [courseStack, setCourseStack] = useState([]);
 
   const history = useHistory();
+  const query = new URLSearchParams(useLocation().search);
 
   const handleChange = state => event => {
     state(event.target.value);
@@ -28,8 +29,13 @@ const NavbarSearchBar = ({ ...props }) => {
 
     if (courseStack) {
       courseStack.forEach(val => {
-        uri = uri.concat('', `stack=${val}`);
+        uri = uri.concat('', `stack=${val}&`);
       });
+    }
+
+    if (query.get('sort')) {
+      const sort = query.get('sort');
+      uri = uri.concat('', `sort=${sort}&`);
     }
 
     history.push(uri);

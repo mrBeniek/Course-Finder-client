@@ -84,7 +84,9 @@ const Main = ({ asyncRequest }) => {
     state(event.target.value);
     query.set('sort', event.target.value);
     query.toString();
-    history.push(`/search/page/1?${query}`);
+    if (query.get('s')) {
+      history.push(`/search/page/1?${query}`);
+    } else history.push(`/search/page/1?s=y&${query}`);
   };
 
   const DELAY = [
