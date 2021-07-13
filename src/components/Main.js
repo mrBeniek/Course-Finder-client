@@ -99,7 +99,6 @@ const Main = ({ asyncRequest }) => {
           margin="normal"
           size="small"
           variant="filled"
-          required
         >
           <InputLabel id="course-source-label">
             SORT BY
