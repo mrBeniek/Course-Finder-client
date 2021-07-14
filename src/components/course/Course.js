@@ -96,8 +96,7 @@ const Course = ({ asyncRequest }) => {
       <ReviewBox
         courseId={id}
         asyncRequest={asyncRequest}
-        reviews={reviews}
-        setReviews={setReviews}
+        id={id}
       />
       <br />
       <hr />

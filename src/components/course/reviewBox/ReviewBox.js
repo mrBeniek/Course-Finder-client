@@ -1,5 +1,6 @@
 import styles from './ReviewBox.module.scss';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import authAxios from 'utils/authAxios';
 import InputField from '../../common/InputField';
 import RecommendBox from './RecommendBox';
@@ -7,14 +8,11 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 
-const ReviewBox = ({
-  asyncRequest,
-  courseId,
-  reviews,
-  setReviews,
-}) => {
+const ReviewBox = ({ asyncRequest, courseId, id }) => {
   const [review, setReview] = useState('');
   const [recommend, setRecommend] = useState('');
+
+  const history = useHistory();
 
   const handleChange = state => event => {
     state(event.target.value);
@@ -22,7 +20,7 @@ const ReviewBox = ({
 
   const handleSubmit = async () => {
     if (!review || !recommend) return;
-    const { ok } = await asyncRequest(
+    const res = await asyncRequest(
       authAxios.post('/api/add/review', {
         data: {
           id: courseId,
@@ -32,9 +30,11 @@ const ReviewBox = ({
       })
     );
 
-    if (ok) {
-      const newReviews = [...reviews];
-      setReviews(newReviews);
+    if (res.ok) {
+      setTimeout(() => {
+        history.push('/empty');
+        history.replace(`course/${id}`);
+      }, 2000);
     }
   };
 
