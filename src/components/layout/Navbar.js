@@ -58,7 +58,6 @@ const Navbar = ({ loginState, setLoginState }) => {
             <Avatar>{userLabel[0].toUpperCase()}</Avatar>
             <Typography
               className={styles.profileLabel}
-              component="p1"
               variant="body1"
             >
               {userLabel}

@@ -23,9 +23,10 @@ const NavbarFilters = ({ courseStack, setCourseStack }) => {
       </AccordionSummary>
 
       <AccordionDetails className={styles.accordionDetails}>
-        {CODING_LANGS.map(val => {
+        {CODING_LANGS.map((val, index) => {
           return (
             <CheckboxLangs
+              key={index}
               label={val}
               courseStack={courseStack}
               setCourseStack={setCourseStack}

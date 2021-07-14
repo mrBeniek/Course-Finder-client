@@ -60,7 +60,7 @@ const Main = ({ asyncRequest }) => {
           ),
           false
         );
-        console.log(data.result);
+        // console.log(data.result);
         setCourses(data.result);
         setPageCount(data.pageCount);
         setLoading(false);
@@ -129,7 +129,11 @@ const Main = ({ asyncRequest }) => {
       </div>
       {courses.map((val, index) => {
         return (
-          <Grow in={!loading} timeout={DELAY[index]}>
+          <Grow
+            in={!loading}
+            timeout={DELAY[index]}
+            key={index}
+          >
             <Container
               className={styles.container}
               maxWidth="lg"
@@ -155,8 +159,13 @@ const Main = ({ asyncRequest }) => {
                       </div>
 
                       <div className={styles.tags}>
-                        {val.stack.map(val => {
-                          return <TagsStack label={val} />;
+                        {val.stack.map((val, index) => {
+                          return (
+                            <TagsStack
+                              label={val}
+                              key={index}
+                            />
+                          );
                         })}
                       </div>
                     </div>
