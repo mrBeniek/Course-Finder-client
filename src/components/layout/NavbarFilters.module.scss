@@ -12,11 +12,17 @@
 
 .accordionDetails {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 
   min-width: 500px;
   margin-top: -10px;
   margin-left: -400px;
-  background: white;
+
+  background: rgb(184, 223, 241);
   border: 1.5px solid black;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
 }

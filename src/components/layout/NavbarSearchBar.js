@@ -11,6 +11,7 @@ import NavbarFilters from './NavbarFilters';
 const NavbarSearchBar = ({ ...props }) => {
   const [searchValue, setSearchValue] = useState('');
   const [courseStack, setCourseStack] = useState([]);
+  const [ratingRange, setRatingRange] = useState([0, 100]);
 
   const history = useHistory();
   const query = new URLSearchParams(useLocation().search);
@@ -31,6 +32,16 @@ const NavbarSearchBar = ({ ...props }) => {
       courseStack.forEach(val => {
         uri = uri.concat('', `stack=${val}&`);
       });
+    }
+
+    if (ratingRange[0] || ratingRange[1] !== 100) {
+      const low = ratingRange[0] - 1;
+      const high = ratingRange[1] + 1;
+
+      uri = uri.concat(
+        '',
+        `rating_low=${low}&rating_high=${high}`
+      );
     }
 
     if (query.get('sort')) {
@@ -77,6 +88,8 @@ const NavbarSearchBar = ({ ...props }) => {
       <NavbarFilters
         courseStack={courseStack}
         setCourseStack={setCourseStack}
+        ratingRange={ratingRange}
+        setRatingRange={setRatingRange}
       />
     </Container>
   );
