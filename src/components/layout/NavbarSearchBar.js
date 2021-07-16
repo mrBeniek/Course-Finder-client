@@ -7,11 +7,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 import { Container } from '@material-ui/core';
 import NavbarFilters from './NavbarFilters';
+import { ageConvert } from 'utils/ageConvert';
 
 const NavbarSearchBar = ({ ...props }) => {
   const [searchValue, setSearchValue] = useState('');
   const [courseStack, setCourseStack] = useState([]);
   const [ratingRange, setRatingRange] = useState([0, 100]);
+  const [ageRange, setAgeRange] = useState([90, 1460]);
 
   const history = useHistory();
   const query = new URLSearchParams(useLocation().search);
@@ -40,7 +42,7 @@ const NavbarSearchBar = ({ ...props }) => {
 
       uri = uri.concat(
         '',
-        `rating_low=${low}&rating_high=${high}`
+        `rating_low=${low}&rating_high=${high}&`
       );
     }
 
@@ -48,6 +50,13 @@ const NavbarSearchBar = ({ ...props }) => {
       const sort = query.get('sort');
       uri = uri.concat('', `sort=${sort}&`);
     }
+
+    const age_low = ageConvert(ageRange[0]);
+    const age_high = ageConvert(ageRange[1]);
+    uri = uri.concat(
+      '',
+      `age_low=${age_low}&age_high=${age_high}&`
+    );
 
     history.push(uri);
   };
@@ -90,6 +99,8 @@ const NavbarSearchBar = ({ ...props }) => {
         setCourseStack={setCourseStack}
         ratingRange={ratingRange}
         setRatingRange={setRatingRange}
+        ageRange={ageRange}
+        setAgeRange={setAgeRange}
       />
     </Container>
   );

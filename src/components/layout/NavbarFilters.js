@@ -15,10 +15,27 @@ const NavbarFilters = ({
   setCourseStack,
   ratingRange,
   setRatingRange,
+  ageRange,
+  setAgeRange,
 }) => {
   const handleRatingChange = (event, newValue) => {
     setRatingRange(newValue);
   };
+
+  const handleAgeChange = (event, newValue) => {
+    setAgeRange(newValue);
+  };
+
+  const AGE_MARKS = [
+    { value: 1460 },
+    { value: 1095, label: '1m' },
+    { value: 730, label: '3m' },
+    { value: 364, label: '6m' },
+    { value: 180, label: '1y' },
+    { value: 90, label: '2y' },
+    { value: 0, label: '3y+' },
+  ];
+
   return (
     <FormControl
       className={styles.form}
@@ -52,7 +69,18 @@ const NavbarFilters = ({
           value={ratingRange}
           onChange={handleRatingChange}
           valueLabelDisplay="auto"
-          aria-labelledby="range-slider"
+          aria-labelledby="rating-slider"
+        />
+        <br />
+        <Typography variant="h6">AGE RANGE</Typography>
+        <Slider
+          value={ageRange}
+          onChange={handleAgeChange}
+          valueLabelDisplay="auto"
+          aria-labelledby="age-slider"
+          step={null}
+          max={1460}
+          marks={AGE_MARKS}
         />
       </AccordionDetails>
     </FormControl>
