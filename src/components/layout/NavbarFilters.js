@@ -1,5 +1,5 @@
 import styles from './NavbarFilters.module.scss';
-import React from 'react';
+import React, { useState } from 'react';
 import { CODING_LANGS } from 'constants.js';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -9,6 +9,7 @@ import Slider from '@material-ui/core/Slider';
 import FormControl from '@material-ui/core/FormControl';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckboxLangs from 'components/addCourse/CheckboxLangs';
+import { Button } from '@material-ui/core';
 
 const NavbarFilters = ({
   courseStack,
@@ -18,12 +19,21 @@ const NavbarFilters = ({
   ageRange,
   setAgeRange,
 }) => {
+  const [resetStack, setResetStack] = useState(false);
+
   const handleRatingChange = (event, newValue) => {
     setRatingRange(newValue);
   };
 
   const handleAgeChange = (event, newValue) => {
     setAgeRange(newValue);
+  };
+
+  const handleReset = () => {
+    setCourseStack([]);
+    setResetStack(true);
+    setRatingRange([0, 100]);
+    setAgeRange([90, 1460]);
   };
 
   const AGE_MARKS = [
@@ -49,7 +59,18 @@ const NavbarFilters = ({
       </AccordionSummary>
 
       <AccordionDetails className={styles.accordionDetails}>
-        <Typography variant="h6">TECH STACK</Typography>
+        <div className={styles.resetCont}>
+          <Typography variant="h6">TECH STACK</Typography>
+          <Button
+            variant="contained"
+            size="small"
+            color="secondary"
+            onClick={handleReset}
+          >
+            RESET FILTERS
+          </Button>
+        </div>
+
         <div className={styles.techStack}>
           {CODING_LANGS.map((val, index) => {
             return (
@@ -58,6 +79,8 @@ const NavbarFilters = ({
                 label={val}
                 courseStack={courseStack}
                 setCourseStack={setCourseStack}
+                resetStack={resetStack}
+                setResetStack={setResetStack}
               />
             );
           })}

@@ -1,13 +1,22 @@
 import styles from './CheckboxLangs.module.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 
 const CheckboxLangs = ({
   label,
   courseStack,
   setCourseStack,
+  resetStack,
+  setResetStack,
 }) => {
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (resetStack) {
+      setActive(false);
+      setResetStack(false);
+    }
+  }, [resetStack, setResetStack]);
 
   const handleClick = () => {
     let newStack = [...courseStack];
