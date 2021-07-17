@@ -90,7 +90,6 @@ const Main = ({ asyncRequest }) => {
   };
 
   const dateConverter = value => {
-    console.log('DATE CONVERTER CHECK');
     const today = Date.now();
     const creationDate = Date.parse(value);
     const days = Math.floor(
@@ -120,7 +119,7 @@ const Main = ({ asyncRequest }) => {
       default:
         break;
     }
-    console.log('RESULT IS', result);
+
     return result;
   };
 
