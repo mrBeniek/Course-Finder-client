@@ -35,10 +35,18 @@
   min-width: 270px;
 }
 
+.description {
+  white-space: pre-wrap;
+}
+
 .bottomCont {
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
+
+  max-height: 50px;
+
+  overflow: hidden;
 }
 
 .pagination {

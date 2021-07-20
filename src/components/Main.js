@@ -209,8 +209,14 @@ const Main = ({ asyncRequest }) => {
 
                   <hr />
                   <div className={styles.bottomCont}>
-                    <Typography paragraph>
-                      {val.description}
+                    <Typography
+                      paragraph
+                      className={styles.description}
+                    >
+                      {val.description.length > 70
+                        ? val.description.slice(0, 70) +
+                          '...'
+                        : val.description}
                     </Typography>
                     <div>
                       <Typography variant="subtitle2">
