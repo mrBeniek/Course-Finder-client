@@ -44,84 +44,90 @@ const Course = ({ asyncRequest, loginState }) => {
 
   return (
     <Container className={styles.container} maxWidth="md">
-      {loading ? (
-        <Skeleton variant="text" width="75%" height={85} />
-      ) : (
-        <React.Fragment>
-          <div className={styles.containerName}>
-            <CourseRating reviews={course.reviews} />
-            <Typography variant="h4">
-              {course.name}
-            </Typography>
-          </div>
-
-          <Typography variant="subtitle2">
-            Date created: {course.date.split('T')[0]}
-          </Typography>
-          <br />
-          <div>
-            {course.stack.map(val => {
-              return <TagsStack label={val} />;
-            })}
-          </div>
-        </React.Fragment>
-      )}
-
-      <br />
-      <hr />
-      <br />
-      {loading ? (
-        <Skeleton
-          variant="rect"
-          width="100%"
-          height={500}
-        />
-      ) : (
-        <React.Fragment>
-          <a
-            href={course.link}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <b>{course.link}</b>
-          </a>
-          <Typography className={styles.desc} paragraph>
-            {course.description}
-          </Typography>
-        </React.Fragment>
-      )}
-
-      <br />
-      <hr />
-      {!loginState ? (
-        <React.Fragment>
-          <br />
-          <Typography variant="h4" align="center">
-            Please log in to review this course
-          </Typography>
-        </React.Fragment>
-      ) : ownReview ? (
-        <React.Fragment>
-          <br />
-          <Typography variant="h4" align="center">
-            You've already reviewed this course.
-            <br />
-            Thanks!
-          </Typography>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <ReviewBox
-            courseId={id}
-            asyncRequest={asyncRequest}
-            id={id}
+      <div className={styles.containerLabel}>
+        {loading ? (
+          <Skeleton
+            variant="text"
+            width="75%"
+            height={85}
           />
-        </React.Fragment>
-      )}
+        ) : (
+          <React.Fragment>
+            <div className={styles.containerName}>
+              <CourseRating reviews={course.reviews} />
+              <Typography variant="h4">
+                {course.name}
+              </Typography>
+            </div>
 
-      <br />
+            <Typography variant="subtitle2">
+              Date created: {course.date.split('T')[0]}
+            </Typography>
+            <br />
+            <div>
+              {course.stack.map(val => {
+                return <TagsStack label={val} />;
+              })}
+            </div>
+          </React.Fragment>
+        )}
+      </div>
+
       <hr />
-      <br />
+
+      <div className={styles.containerDesc}>
+        {loading ? (
+          <Skeleton
+            variant="rect"
+            width="100%"
+            height={500}
+          />
+        ) : (
+          <React.Fragment>
+            <a
+              href={course.link}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <b>{course.link}</b>
+            </a>
+            <Typography className={styles.desc} paragraph>
+              {course.description}
+            </Typography>
+          </React.Fragment>
+        )}
+      </div>
+
+      <hr />
+
+      <div className={styles.containerReview}>
+        {!loginState ? (
+          <React.Fragment>
+            <Typography variant="h4" align="center">
+              Please log in to review this course
+            </Typography>
+          </React.Fragment>
+        ) : ownReview ? (
+          <React.Fragment>
+            <Typography variant="h4" align="center">
+              You've already reviewed this course.
+              <br />
+              Thanks!
+            </Typography>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <ReviewBox
+              courseId={id}
+              asyncRequest={asyncRequest}
+              id={id}
+            />
+          </React.Fragment>
+        )}
+      </div>
+
+      <hr />
+
       <ReviewList
         id={id}
         asyncRequest={asyncRequest}

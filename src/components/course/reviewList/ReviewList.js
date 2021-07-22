@@ -52,6 +52,7 @@ const ReviewList = ({
         }
       }
     };
+
     if (id.length === 24) fetchReviews();
   }, [currentPage]);
 
@@ -60,20 +61,29 @@ const ReviewList = ({
   };
 
   return (
-    <Container>
+    <Container className={styles.container}>
       {loading ? (
-        <Typography align="center" variant="h6">
+        <Typography
+          className={styles.typographyReviews}
+          align="center"
+          variant="h6"
+        >
           {loading}
         </Typography>
       ) : (
         <React.Fragment>
-          <Typography variant="h4">REVIEWS:</Typography>
+          <Typography
+            className={styles.typographyReviews}
+            variant="h4"
+          >
+            REVIEWS:
+          </Typography>
           <br />
           <br />
           {reviews.map((val, index) => {
             return (
               <Container
-                className={styles.container}
+                className={styles.containerReview}
                 maxWidth="md"
                 key={index}
               >

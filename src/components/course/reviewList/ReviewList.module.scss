@@ -1,4 +1,4 @@
-.container {
+.containerReview {
   border: 2px solid black;
   padding: 15px 30px;
   margin: 20px 0;
@@ -7,6 +7,10 @@
 .nameCont {
   display: flex;
   justify-content: space-between;
+}
+
+.typographyReviews {
+  padding-top: 30px;
 }
 
 .pagination {
