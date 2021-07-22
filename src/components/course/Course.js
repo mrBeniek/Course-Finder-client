@@ -11,7 +11,7 @@ import { Skeleton } from '@material-ui/lab';
 import TagsStack from 'components/common/TagsStack';
 import CourseRating from 'components/common/CourseRating';
 
-const Course = ({ asyncRequest }) => {
+const Course = ({ asyncRequest, loginState }) => {
   const [course, setCourse] = useState({});
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -92,12 +92,23 @@ const Course = ({ asyncRequest }) => {
 
       <br />
       <hr />
+      {loginState ? (
+        <React.Fragment>
+          <ReviewBox
+            courseId={id}
+            asyncRequest={asyncRequest}
+            id={id}
+          />
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <br />
+          <Typography variant="h4" align="center">
+            Please log in to review this course
+          </Typography>
+        </React.Fragment>
+      )}
 
-      <ReviewBox
-        courseId={id}
-        asyncRequest={asyncRequest}
-        id={id}
-      />
       <br />
       <hr />
       <br />
