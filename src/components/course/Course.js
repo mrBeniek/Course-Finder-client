@@ -14,12 +14,14 @@ import CourseRating from 'components/common/CourseRating';
 const Course = ({ asyncRequest, loginState }) => {
   const [course, setCourse] = useState({});
   const [reviews, setReviews] = useState([]);
-  const [ownReview, setOwnReview] = useState(false);
+  const [ownReview, setOwnReview] = useState('loading');
   const [loading, setLoading] = useState(true);
 
   const history = useHistory();
 
   const { id } = useParams();
+
+  console.log('OWN REVIEW IS', ownReview);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -101,13 +103,19 @@ const Course = ({ asyncRequest, loginState }) => {
       <hr />
 
       <div className={styles.containerReview}>
-        {!loginState ? (
+        {ownReview === 'loading' ? (
+          <Skeleton
+            variant="rect"
+            width="100%"
+            height={150}
+          />
+        ) : !loginState ? (
           <React.Fragment>
             <Typography variant="h4" align="center">
               Please log in to review this course
             </Typography>
           </React.Fragment>
-        ) : ownReview ? (
+        ) : !ownReview.length ? (
           <React.Fragment>
             <Typography variant="h4" align="center">
               You've already reviewed this course.
