@@ -13,6 +13,7 @@ const ReviewList = ({
   asyncRequest,
   reviews,
   setReviews,
+  setOwnReview,
 }) => {
   const [loading, setLoading] = useState(
     'Loading reviews...'
@@ -29,15 +30,20 @@ const ReviewList = ({
         count = true;
       }
 
+      const author = JSON.parse(
+        localStorage.userInfo
+      ).username;
+
       const { ok, data } = await asyncRequest(
         axios.get(
-          `/api/download/reviews/${id}/page/${currentPage}/count/${count}`
+          `/api/download/reviews/${id}/page/${currentPage}/count/${count}/author/${author}`
         ),
         false
       );
       if (ok) {
         console.log(data.result);
         setReviews(data.result);
+        setOwnReview(data.ownReview);
         if (data.pageCount) setPageCount(data.pageCount);
         if (data.result.length > 0) {
           setLoading(false);

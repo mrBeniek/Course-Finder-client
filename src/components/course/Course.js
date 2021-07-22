@@ -14,6 +14,7 @@ import CourseRating from 'components/common/CourseRating';
 const Course = ({ asyncRequest, loginState }) => {
   const [course, setCourse] = useState({});
   const [reviews, setReviews] = useState([]);
+  const [ownReview, setOwnReview] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const history = useHistory();
@@ -92,20 +93,29 @@ const Course = ({ asyncRequest, loginState }) => {
 
       <br />
       <hr />
-      {loginState ? (
+      {!loginState ? (
+        <React.Fragment>
+          <br />
+          <Typography variant="h4" align="center">
+            Please log in to review this course
+          </Typography>
+        </React.Fragment>
+      ) : ownReview ? (
+        <React.Fragment>
+          <br />
+          <Typography variant="h4" align="center">
+            You've already reviewed this course.
+            <br />
+            Thanks!
+          </Typography>
+        </React.Fragment>
+      ) : (
         <React.Fragment>
           <ReviewBox
             courseId={id}
             asyncRequest={asyncRequest}
             id={id}
           />
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <br />
-          <Typography variant="h4" align="center">
-            Please log in to review this course
-          </Typography>
         </React.Fragment>
       )}
 
@@ -117,6 +127,7 @@ const Course = ({ asyncRequest, loginState }) => {
         asyncRequest={asyncRequest}
         reviews={reviews}
         setReviews={setReviews}
+        setOwnReview={setOwnReview}
       />
     </Container>
   );
