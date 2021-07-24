@@ -1,15 +1,15 @@
 import React from 'react';
 import Layout from 'components/layout/Layout';
-import ChangePasswordMain from 'components/ChangePasswordMain';
+import ChangePassword from 'components/ChangePassword';
 
-const ChangePassword = () => {
+const ChangePasswordPage = () => {
   return (
     <div>
       <Layout title="Password Change">
-        <ChangePasswordMain />
+        <ChangePassword />
       </Layout>
     </div>
   );
 };
 
-export default ChangePassword;
+export default ChangePasswordPage;

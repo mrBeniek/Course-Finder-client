@@ -1,17 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from 'components/layout/Layout';
-import RecPasswordMain from 'components/RecPasswordMain';
+import RecPassword from 'components/RecPassword';
 
-const RecPassword = () => {
+const RecPasswordPage = () => {
   const { token } = useParams();
   return (
     <div>
       <Layout title="Password Change">
-        <RecPasswordMain token={token} />
+        <RecPassword token={token} />
       </Layout>
     </div>
   );
 };
 
-export default RecPassword;
+export default RecPasswordPage;

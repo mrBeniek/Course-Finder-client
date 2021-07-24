@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import authAxios from 'utils/authAxios';
 import { useLocation, useHistory } from 'react-router-dom';
 
-const Auth = () => {
+const AuthPage = () => {
   const history = useHistory();
   const query = new URLSearchParams(useLocation().search);
 
@@ -50,4 +50,4 @@ const Auth = () => {
   return <div></div>;
 };
 
-export default Auth;
+export default AuthPage;

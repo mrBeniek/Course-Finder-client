@@ -1,4 +1,4 @@
-import styles from './Signup.module.scss';
+import styles from './signup.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useCredentials from 'hooks/useCredentials';
@@ -8,7 +8,7 @@ import InputField from 'components/common/InputField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const Signup = () => {
+const SignupPage = () => {
   const { credentialsSend, status, msg } = useCredentials();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -103,4 +103,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupPage;

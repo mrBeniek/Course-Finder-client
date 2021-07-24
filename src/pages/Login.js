@@ -1,4 +1,4 @@
-import styles from './Login.module.scss';
+import styles from './login.module.scss';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-const Login = () => {
+const LoginPage = () => {
   const { credentialsSend, status, msg } = useCredentials();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -114,4 +114,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

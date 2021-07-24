@@ -1,4 +1,4 @@
-import styles from './ProfileMain.module.scss';
+import styles from './Profile.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +11,7 @@ import ButtonRedirect from './common/ButtonRedirect';
 import InputField from './common/InputField';
 import authAxios from 'utils/authAxios';
 
-const ProfileMain = ({ asyncRequest, username }) => {
+const Profile = ({ asyncRequest, username }) => {
   const [profile, setProfile] = useState({});
   const [changeUsername, setChangeUsername] =
     useState(false);
@@ -138,4 +138,4 @@ const ProfileMain = ({ asyncRequest, username }) => {
   );
 };
 
-export default ProfileMain;
+export default Profile;

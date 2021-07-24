@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Layout from 'components/layout/Layout';
 import Info from 'components/common/Info';
 
-const Verify = () => {
+const VerifyPage = () => {
   const history = useHistory();
   const { type } = useParams();
 
@@ -44,4 +44,4 @@ const Verify = () => {
   );
 };
 
-export default Verify;
+export default VerifyPage;

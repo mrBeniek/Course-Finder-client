@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from 'components/layout/Layout';
 import Info from 'components/common/Info';
 
-const RecInfo = () => {
+const RecInfoPage = () => {
   return (
     <div>
       <Layout title="Password recovery - Check your email">
@@ -16,4 +16,4 @@ const RecInfo = () => {
   );
 };
 
-export default RecInfo;
+export default RecInfoPage;

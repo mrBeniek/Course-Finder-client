@@ -1,7 +1,7 @@
 import styles from './Layout.module.scss';
 import React, { useState, useEffect } from 'react';
 import SnackbarInfo from 'components/common/SnackbarInfo';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
 // import Sidebar from './Sidebar';
 import useAsync from 'hooks/useAsync';
 

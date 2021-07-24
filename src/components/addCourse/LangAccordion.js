@@ -1,4 +1,4 @@
-import styles from './AddCourseLangAccordion.module.scss';
+import styles from './LangAccordion.module.scss';
 import React from 'react';
 import { CODING_LANGS } from 'constants.js';
 import Accordion from '@material-ui/core/Accordion';
@@ -9,10 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckboxLangs from 'components/addCourse/CheckboxLangs';
 
-const AddCourseLangAccordion = ({
-  courseStack,
-  setCourseStack,
-}) => {
+const LangAccordion = ({ courseStack, setCourseStack }) => {
   return (
     <FormControl
       component={Accordion}
@@ -38,4 +35,4 @@ const AddCourseLangAccordion = ({
   );
 };
 
-export default AddCourseLangAccordion;
+export default LangAccordion;

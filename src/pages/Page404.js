@@ -1,4 +1,4 @@
-import styles from './Page404.module.scss';
+import styles from './page404.module.scss';
 import React from 'react';
 import Layout from 'components/layout/Layout';
 import Typography from '@material-ui/core/Typography';

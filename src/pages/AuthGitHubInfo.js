@@ -3,7 +3,7 @@ import Layout from 'components/layout/Layout';
 import Info from 'components/common/Info';
 import { useHistory, useParams } from 'react-router-dom';
 
-const AuthGitHubInfo = () => {
+const AuthGitHubInfoPage = () => {
   const { error } = useParams();
   const history = useHistory();
 
@@ -30,4 +30,4 @@ const AuthGitHubInfo = () => {
   );
 };
 
-export default AuthGitHubInfo;
+export default AuthGitHubInfoPage;

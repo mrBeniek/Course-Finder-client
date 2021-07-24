@@ -1,5 +1,5 @@
 import 'date-fns';
-import styles from './AddCourseMain.module.scss';
+import styles from './AddCourse.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import DateFnsUtils from '@date-io/date-fns';
@@ -12,13 +12,13 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import AddCourseLangAccordion from './AddCourseLangAccordion';
+import LangAccordion from './LangAccordion';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-const AddCourseMain = ({ asyncRequest, loginState }) => {
+const AddCourse = ({ asyncRequest, loginState }) => {
   const [courseName, setCourseName] = useState('');
   const [courseLink, setCourseLink] = useState('');
   const [courseSource, setCourseSource] = useState('');
@@ -120,7 +120,7 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
           />
         </MuiPickersUtilsProvider>
       </div>
-      <AddCourseLangAccordion
+      <LangAccordion
         courseStack={courseStack}
         setCourseStack={setCourseStack}
       />
@@ -145,4 +145,4 @@ const AddCourseMain = ({ asyncRequest, loginState }) => {
   );
 };
 
-export default AddCourseMain;
+export default AddCourse;

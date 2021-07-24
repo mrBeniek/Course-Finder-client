@@ -1,4 +1,4 @@
-import styles from './RecEmailMain.module.scss';
+import styles from './RecEmail.module.scss';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import InputField from 'components/common/InputField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const RecEmailMain = ({ asyncRequest }) => {
+const RecEmail = ({ asyncRequest }) => {
   const [email, setEmail] = useState('');
   const history = useHistory();
 
@@ -62,4 +62,4 @@ const RecEmailMain = ({ asyncRequest }) => {
   );
 };
 
-export default RecEmailMain;
+export default RecEmail;

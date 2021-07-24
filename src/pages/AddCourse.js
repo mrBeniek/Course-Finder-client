@@ -1,15 +1,15 @@
 import React from 'react';
 import Layout from 'components/layout/Layout';
-import AddCourseMain from 'components/addCourse/AddCourseMain';
+import AddCourse from 'components/addCourse/AddCourse';
 
-const Home = () => {
+const addCoursePage = () => {
   return (
     <div>
       <Layout title="Add New Course">
-        <AddCourseMain />
+        <AddCourse />
       </Layout>
     </div>
   );
 };
 
-export default Home;
+export default addCoursePage;

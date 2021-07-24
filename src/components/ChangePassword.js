@@ -1,13 +1,14 @@
-import styles from './RecPasswordMain.module.scss';
+import styles from './ChangePassword.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import InputField from 'components/common/InputField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import authAxios from 'utils/authAxios';
 
-const RecPasswordMain = ({ asyncRequest, token }) => {
+const ChangePassword = ({ asyncRequest }) => {
+  const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [passwordError, setPasswordError] = useState(false);
@@ -15,7 +16,7 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (!localStorage.recToken) history.replace('/home');
+    if (!localStorage.token) history.replace('/home');
   });
 
   const handleChange = state => event => {
@@ -27,36 +28,30 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
       return setPasswordError(true);
     }
 
-    const payload = {
-      token: token,
-      password: password,
-    };
-
-    const config = {
-      headers: { authorization: localStorage.recToken },
-    };
+    const profileOwner =
+      localStorage.userInfo &&
+      JSON.parse(localStorage.userInfo).username;
 
     const { ok, data } = await asyncRequest(
-      axios.post(
-        '/api/recovery/token',
-        {
-          data: payload,
+      authAxios.post('/api/change/password', {
+        data: {
+          oldPassword: oldPassword,
+          password: password,
         },
-        config
-      )
+      })
     );
 
     if (ok) {
       setTimeout(() => {
-        history.push(`/login`);
-        localStorage.removeItem('recToken');
+        history.push(`/profile/${profileOwner}`);
       }, 5000);
     }
 
     if (!ok && data.status === 403) {
       setTimeout(() => {
-        history.push('/recovery/email');
-        localStorage.removeItem('recToken');
+        history.push('/login');
+        localStorage.removeItem('token');
+        localStorage.removeItem('userInfo');
       }, 5000);
     }
   };
@@ -73,8 +68,15 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
           autoComplete="off"
         >
           <InputField
+            id="oldpassword"
+            label="Old Password"
+            type="password"
+            value={oldPassword}
+            onChange={handleChange(setOldPassword)}
+          />
+          <InputField
             id="password"
-            label="Password"
+            label="New Password"
             type="password"
             value={password}
             onChange={handleChange(setPassword)}
@@ -85,7 +87,7 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
               passwordError && "Password doesn't match"
             }
             id="repeat-password"
-            label="Repeat Password"
+            label="Repeat New Password"
             type="password"
             value={passwordRepeat}
             onChange={handleChange(setPasswordRepeat)}
@@ -105,4 +107,4 @@ const RecPasswordMain = ({ asyncRequest, token }) => {
   );
 };
 
-export default RecPasswordMain;
+export default ChangePassword;

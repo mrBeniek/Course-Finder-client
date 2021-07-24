@@ -1,20 +1,20 @@
 import './_app.scss';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Home from 'pages/Home';
-import Login from 'pages/Login';
-import AuthGitHubInfo from 'pages/AuthGitHubInfo';
-import Auth from 'pages/Auth';
-import ChangePassword from 'pages/ChangePassword';
-import Signup from 'pages/Signup';
-import AddCourse from 'pages/AddCourse';
-import Course from 'pages/Course';
-import Verify from 'pages/Verify';
-import RecEmail from 'pages/RecEmail';
-import RecInfo from 'pages/RecInfo';
-import RecPassword from 'pages/RecPassword';
-import Page404 from 'pages/Page404';
-import Profile from 'pages/Profile';
+import home from 'pages/home';
+import login from 'pages/login';
+import authGitHubInfo from 'pages/authGitHubInfo';
+import auth from 'pages/auth';
+import changePassword from 'pages/changePassword';
+import signup from 'pages/signup';
+import addCourse from 'pages/addCourse';
+import course from 'pages/course';
+import verify from 'pages/verify';
+import recEmail from 'pages/recEmail';
+import recInfo from 'pages/recInfo';
+import recPassword from 'pages/recPassword';
+import page404 from 'pages/page404';
+import profile from 'pages/profile';
 
 function App() {
   return (
@@ -22,38 +22,38 @@ function App() {
       <Route exact path="/">
         <Redirect to="/home" />
       </Route>
-      <Route exact path="/home" component={Home} />
-      <Route path="/home/page/:page" component={Home} />
-      <Route path="/search/page/:page" component={Home} />
-      <Route path="/addcourse" component={AddCourse} />
-      <Route exact path="/auth" component={Auth} />
+      <Route exact path="/home" component={home} />
+      <Route path="/home/page/:page" component={home} />
+      <Route path="/search/page/:page" component={home} />
+      <Route path="/addcourse" component={addCourse} />
+      <Route exact path="/auth" component={auth} />
       <Route
         path="/auth/github/info/:error"
-        component={AuthGitHubInfo}
+        component={authGitHubInfo}
       />
       <Route
         path="/change/password"
-        component={ChangePassword}
+        component={changePassword}
       />
-      <Route path="/course/:id" component={Course} />
-      <Route path="/login" component={Login} />
+      <Route path="/course/:id" component={course} />
+      <Route path="/login" component={login} />
       <Route
         path="/profile/:username"
-        component={Profile}
+        component={profile}
       />
-      <Route path="/recovery/email" component={RecEmail} />
-      <Route path="/recovery/info" component={RecInfo} />
+      <Route path="/recovery/email" component={recEmail} />
+      <Route path="/recovery/info" component={recInfo} />
       <Route
         path="/recovery/password/:token"
-        component={RecPassword}
+        component={recPassword}
       />
-      <Route path="/signup" component={Signup} />
+      <Route path="/signup" component={signup} />
       <Route
         path="/verify/email/:type"
-        component={Verify}
+        component={verify}
       />
-      <Route path="/404" component={Page404} />
-      <Route path="*" component={Page404} />
+      <Route path="/404" component={page404} />
+      <Route path="*" component={page404} />
     </Switch>
   );
 }

@@ -1,14 +1,14 @@
-import RecEmailMain from 'components/RecEmailMain';
+import RecEmail from 'components/RecEmail';
 import Layout from 'components/layout/Layout';
 
-const RecEmail = () => {
+const RecEmailPage = () => {
   return (
     <div>
       <Layout title="Password recovery">
-        <RecEmailMain />
+        <RecEmail />
       </Layout>
     </div>
   );
 };
 
-export default RecEmail;
+export default RecEmailPage;
