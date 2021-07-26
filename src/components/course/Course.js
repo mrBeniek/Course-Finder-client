@@ -139,6 +139,7 @@ const Course = ({ asyncRequest, loginState }) => {
       <ReviewList
         id={id}
         asyncRequest={asyncRequest}
+        loginState={loginState}
         reviews={reviews}
         setReviews={setReviews}
         setOwnReview={setOwnReview}

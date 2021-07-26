@@ -11,6 +11,7 @@ import { Pagination } from '@material-ui/lab';
 const ReviewList = ({
   id,
   asyncRequest,
+  loginState,
   reviews,
   setReviews,
   setOwnReview,
@@ -29,10 +30,10 @@ const ReviewList = ({
       if (!pageCount) {
         count = true;
       }
-
-      const author = JSON.parse(
-        localStorage.userInfo
-      ).username;
+      let author = null;
+      if (loginState) {
+        author = JSON.parse(localStorage.userInfo).username;
+      }
 
       const { ok, data } = await asyncRequest(
         axios.get(
