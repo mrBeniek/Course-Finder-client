@@ -26,14 +26,11 @@ const ReviewList = ({
 
   useEffect(() => {
     const fetchReviews = async () => {
-      let count = false;
-      if (!pageCount) {
-        count = true;
-      }
-      let author = null;
-      if (loginState) {
-        author = JSON.parse(localStorage.userInfo).username;
-      }
+      const count = !pageCount ? true : false;
+
+      const author =
+        loginState &&
+        JSON.parse(localStorage.userInfo).username;
 
       const { ok, data } = await asyncRequest(
         axios.get(
