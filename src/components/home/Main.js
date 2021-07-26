@@ -13,22 +13,18 @@ import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Pagination } from '@material-ui/lab';
-import SkeletonCourses from './common/SkeletonCourses';
-import CourseLogo from './common/CourseLogo';
-import TagsStack from './common/TagsStack';
-import CourseRating from './common/CourseRating';
+import SkeletonCourses from '../common/SkeletonCourses';
+import CourseLogo from '../common/CourseLogo';
+import TagsStack from '../common/TagsStack';
+import CourseRating from '../common/CourseRating';
 import Grow from '@material-ui/core/Grow';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import { dateConverter } from 'utils/dateConvert';
+import Sort from './Sort';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
   const [pageCount, setPageCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sort, setSort] = useState('datea');
   const [loading, setLoading] = useState(true);
 
   let { page } = useParams();
@@ -64,53 +60,13 @@ const Main = ({ asyncRequest }) => {
     } else history.push(`/home/page/${value}`);
   };
 
-  const handleSortChange = state => event => {
-    state(event.target.value);
-    query.set('sort', event.target.value);
-    query.toString();
-    if (query.get('s')) {
-      history.push(`/search/page/1?${query}`);
-    } else history.push(`/search/page/1?s=y&${query}`);
-  };
-
   const DELAY = [
     0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500,
   ];
 
   return (
     <div className={styles.main}>
-      <div className={styles.sortCont}>
-        <FormControl
-          className={styles.formSort}
-          margin="normal"
-          size="small"
-          variant="filled"
-        >
-          <InputLabel id="course-source-label">
-            SORT BY
-          </InputLabel>
-          <Select
-            labelId="course-source-label"
-            id="course-source-select"
-            value={sort}
-            variant="filled"
-            onChange={handleSortChange(setSort)}
-          >
-            <MenuItem value={'datea'}>
-              Date created: ascending
-            </MenuItem>
-            <MenuItem value={'dated'}>
-              Date created: descending
-            </MenuItem>
-            <MenuItem value={'ratinga'}>
-              Rating: ascending
-            </MenuItem>
-            <MenuItem value={'ratingd'}>
-              Rating: descending
-            </MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+      <Sort query={query} />
       {courses.map((val, index) => {
         return (
           <Grow

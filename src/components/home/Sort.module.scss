@@ -1,0 +1,11 @@
+@import '_app.scss';
+
+.sortCont {
+  @extend .flex-mid-full;
+  margin-bottom: -15px;
+}
+
+.formSort {
+  background-color: white;
+  min-width: 270px;
+}
