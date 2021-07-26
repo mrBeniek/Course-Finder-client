@@ -1,0 +1,36 @@
+@import '_app.scss';
+
+.container {
+  background-color: rgb(42, 212, 147);
+  border: black 3px solid;
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.containerInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerName {
+  display: flex;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+.bottomCont {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+
+  max-height: 50px;
+
+  overflow: hidden;
+}

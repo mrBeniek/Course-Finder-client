@@ -1,25 +1,14 @@
 import styles from './Main.module.scss';
-import React, {
-  useState,
-  useEffect,
-  Fragment,
-} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   useHistory,
   useParams,
   useLocation,
 } from 'react-router-dom';
 import axios from 'axios';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import { Pagination } from '@material-ui/lab';
-import SkeletonCourses from '../common/SkeletonCourses';
-import CourseLogo from '../common/CourseLogo';
-import TagsStack from '../common/TagsStack';
-import CourseRating from '../common/CourseRating';
-import Grow from '@material-ui/core/Grow';
-import { dateConverter } from 'utils/dateConvert';
 import Sort from './Sort';
+import CoursesList from './CoursesList';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
@@ -60,85 +49,10 @@ const Main = ({ asyncRequest }) => {
     } else history.push(`/home/page/${value}`);
   };
 
-  const DELAY = [
-    0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500,
-  ];
-
   return (
     <div className={styles.main}>
       <Sort query={query} />
-      {courses.map((val, index) => {
-        return (
-          <Grow
-            in={!loading}
-            timeout={DELAY[index]}
-            key={index}
-          >
-            <Container
-              className={styles.container}
-              maxWidth="lg"
-              key={index}
-              onClick={() => {
-                if (!loading)
-                  history.push(`/course/${val._id}`);
-              }}
-            >
-              {loading ? (
-                <SkeletonCourses />
-              ) : (
-                <Fragment>
-                  <div className={styles.containerInfo}>
-                    <div>
-                      <div className={styles.containerName}>
-                        <CourseRating
-                          reviews={val.reviews}
-                        />
-                        <Typography variant="h4">
-                          {val.name}
-                        </Typography>
-                      </div>
-
-                      <div className={styles.tags}>
-                        {val.stack.map((val, index) => {
-                          return (
-                            <TagsStack
-                              label={val}
-                              key={index}
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <CourseLogo logo={val.source} />
-                  </div>
-
-                  <hr />
-                  <div className={styles.bottomCont}>
-                    <Typography
-                      paragraph
-                      className={styles.description}
-                    >
-                      {val.description.length > 70
-                        ? val.description.slice(0, 70) +
-                          '...'
-                        : val.description}
-                    </Typography>
-                    <div>
-                      <Typography variant="subtitle2">
-                        age:
-                      </Typography>
-                      <Typography variant="subtitle2">
-                        {dateConverter(val.date)}
-                      </Typography>
-                    </div>
-                  </div>
-                </Fragment>
-              )}
-            </Container>
-          </Grow>
-        );
-      })}
+      <CoursesList courses={courses} loading={loading} />
       {pageCount > 1 && (
         <Pagination
           className={styles.pagination}
