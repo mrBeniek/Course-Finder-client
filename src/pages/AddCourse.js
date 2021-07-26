@@ -4,11 +4,9 @@ import AddCourse from 'components/addCourse/AddCourse';
 
 const addCoursePage = () => {
   return (
-    <div>
-      <Layout title="Add New Course">
-        <AddCourse />
-      </Layout>
-    </div>
+    <Layout title="Add New Course">
+      <AddCourse />
+    </Layout>
   );
 };
 

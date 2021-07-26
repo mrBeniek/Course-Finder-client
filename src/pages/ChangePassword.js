@@ -4,11 +4,9 @@ import ChangePassword from 'components/ChangePassword';
 
 const ChangePasswordPage = () => {
   return (
-    <div>
-      <Layout title="Password Change">
-        <ChangePassword />
-      </Layout>
-    </div>
+    <Layout title="Password Change">
+      <ChangePassword />
+    </Layout>
   );
 };
 
