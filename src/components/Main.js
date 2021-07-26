@@ -22,6 +22,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import { dateConverter } from 'utils/dateConvert';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
@@ -38,29 +39,12 @@ const Main = ({ asyncRequest }) => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        // let response;
-        // if (query.get('s')) {
-        //   const name = query.get('name');
-        //   response = await asyncRequest(
-        //     axios.get(
-        //       `/api/download/search/${page}?name=${name}`
-        //     ),
-        //     false
-        //   );
-        // } else {
-        //   response = await asyncRequest(
-        //     axios.get(`/api/download/courses/${page}`),
-        //     false
-        //   );
-        // }
-        // const { data } = response;
         const { data } = await asyncRequest(
           axios.get(
             `/api/download/courses/${page}?${queryString}`
           ),
           false
         );
-        // console.log(data.result);
         setCourses(data.result);
         setPageCount(data.pageCount);
         setLoading(false);
@@ -87,40 +71,6 @@ const Main = ({ asyncRequest }) => {
     if (query.get('s')) {
       history.push(`/search/page/1?${query}`);
     } else history.push(`/search/page/1?s=y&${query}`);
-  };
-
-  const dateConverter = value => {
-    const today = Date.now();
-    const creationDate = Date.parse(value);
-    const days = Math.floor(
-      (today - creationDate) / 8.64e7
-    );
-    let result = '';
-
-    switch (true) {
-      case days === 0:
-        result = 'NEW';
-        break;
-      case days > 0 && days < 61:
-        result = days + 'd';
-        break;
-      case days >= 61 && days < 365:
-        result = Math.floor(days / 30) + 'm';
-        break;
-      case days >= 365 && days < 730:
-        result = '1y+';
-        break;
-      case days >= 730 && days < 1095:
-        result = '2y+';
-        break;
-      case days >= 1095:
-        result = '3y+';
-        break;
-      default:
-        break;
-    }
-
-    return result;
   };
 
   const DELAY = [
