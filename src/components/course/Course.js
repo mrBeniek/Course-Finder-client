@@ -115,7 +115,7 @@ const Course = ({ asyncRequest, loginState }) => {
               Please log in to review this course
             </Typography>
           </React.Fragment>
-        ) : !ownReview.length ? (
+        ) : ownReview.length ? (
           <React.Fragment>
             <Typography variant="h4" align="center">
               You've already reviewed this course.
