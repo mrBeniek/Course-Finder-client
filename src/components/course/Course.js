@@ -8,8 +8,7 @@ import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
-import TagsStack from 'components/common/TagsStack';
-import CourseRating from 'components/common/CourseRating';
+import Label from './Label';
 
 const Course = ({ asyncRequest, loginState }) => {
   const [course, setCourse] = useState({});
@@ -20,8 +19,6 @@ const Course = ({ asyncRequest, loginState }) => {
   const history = useHistory();
 
   const { id } = useParams();
-
-  console.log('OWN REVIEW IS', ownReview);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -46,34 +43,7 @@ const Course = ({ asyncRequest, loginState }) => {
 
   return (
     <Container className={styles.container} maxWidth="md">
-      <div className={styles.containerLabel}>
-        {loading ? (
-          <Skeleton
-            variant="text"
-            width="75%"
-            height={85}
-          />
-        ) : (
-          <React.Fragment>
-            <div className={styles.containerName}>
-              <CourseRating reviews={course.reviews} />
-              <Typography variant="h4">
-                {course.name}
-              </Typography>
-            </div>
-
-            <Typography variant="subtitle2">
-              Date created: {course.date.split('T')[0]}
-            </Typography>
-            <br />
-            <div>
-              {course.stack.map(val => {
-                return <TagsStack label={val} />;
-              })}
-            </div>
-          </React.Fragment>
-        )}
-      </div>
+      <Label loading={loading} course={course} />
 
       <hr />
 
