@@ -22,21 +22,21 @@ const CoursesList = ({ courses, loading }) => {
       {courses.map((val, index) => {
         return (
           <Grow
+            key={val}
             in={!loading}
             timeout={DELAY[index]}
-            key={index}
           >
             <Container
+              key={val}
               className={styles.container}
               maxWidth="lg"
-              key={index}
               onClick={() => {
                 if (!loading)
                   history.push(`/course/${val._id}`);
               }}
             >
               {loading ? (
-                <SkeletonCourses />
+                <SkeletonCourses key={val} />
               ) : (
                 <Fragment>
                   <div className={styles.containerInfo}>
@@ -55,7 +55,7 @@ const CoursesList = ({ courses, loading }) => {
                           return (
                             <TagsStack
                               label={val}
-                              key={index}
+                              key={val}
                             />
                           );
                         })}

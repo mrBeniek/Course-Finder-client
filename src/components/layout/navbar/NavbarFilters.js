@@ -72,10 +72,10 @@ const NavbarFilters = ({
         </div>
 
         <div className={styles.techStack}>
-          {CODING_LANGS.map((val, index) => {
+          {CODING_LANGS.map(val => {
             return (
               <CheckboxLangs
-                key={index}
+                key={val}
                 label={val}
                 courseStack={courseStack}
                 setCourseStack={setCourseStack}

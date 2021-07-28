@@ -25,6 +25,7 @@ const LangAccordion = ({ courseStack, setCourseStack }) => {
           return (
             <CheckboxLangs
               label={val}
+              key={val}
               courseStack={courseStack}
               setCourseStack={setCourseStack}
             />

@@ -37,7 +37,7 @@ const Course = ({ asyncRequest, loginState }) => {
     } else {
       history.replace('/404');
     }
-  }, []);
+  }, [id]);
 
   return (
     <Container className={styles.container} maxWidth="md">

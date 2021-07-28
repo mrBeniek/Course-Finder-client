@@ -52,7 +52,7 @@ const ReviewList = ({
     };
 
     if (id.length === 24) fetchReviews();
-  }, [currentPage]);
+  }, [currentPage, id]);
 
   const handlePage = (e, value) => {
     setCurrentPage(value);
@@ -78,12 +78,12 @@ const ReviewList = ({
           </Typography>
           <br />
           <br />
-          {reviews.map((val, index) => {
+          {reviews.map(val => {
             return (
               <Container
                 className={styles.containerReview}
                 maxWidth="md"
-                key={index}
+                key={val._id}
               >
                 <div className={styles.nameCont}>
                   <div>
