@@ -2,7 +2,7 @@ import styles from './ReviewBox.module.scss';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import authAxios from 'utils/authAxios';
-import InputField from '../../common/InputField';
+import InputField from '../../../common/InputField';
 import RecommendBox from './RecommendBox';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';

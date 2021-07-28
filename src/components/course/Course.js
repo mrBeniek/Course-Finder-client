@@ -1,15 +1,13 @@
 import styles from './Course.module.scss';
-import ReviewBox from 'components/course/reviewBox/ReviewBox';
 import ReviewList from './reviewList/ReviewList';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { Skeleton } from '@material-ui/lab';
 import Label from './Label';
 import Description from './Description';
+import Review from './review/Review';
 
 const Course = ({ asyncRequest, loginState }) => {
   const [course, setCourse] = useState({});
@@ -18,7 +16,6 @@ const Course = ({ asyncRequest, loginState }) => {
   const [loading, setLoading] = useState(true);
 
   const history = useHistory();
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -48,40 +45,13 @@ const Course = ({ asyncRequest, loginState }) => {
       <hr />
       <Description loading={loading} course={course} />
       <hr />
-      <div className={styles.containerReview}>
-        {ownReview === 'loading' ? (
-          <Skeleton
-            variant="rect"
-            width="100%"
-            height={150}
-          />
-        ) : !loginState ? (
-          <React.Fragment>
-            <Typography variant="h4" align="center">
-              Please log in to review this course
-            </Typography>
-          </React.Fragment>
-        ) : ownReview.length ? (
-          <React.Fragment>
-            <Typography variant="h4" align="center">
-              You've already reviewed this course.
-              <br />
-              Thanks!
-            </Typography>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <ReviewBox
-              courseId={id}
-              asyncRequest={asyncRequest}
-              id={id}
-            />
-          </React.Fragment>
-        )}
-      </div>
-
+      <Review
+        ownReview={ownReview}
+        loginState={loginState}
+        asyncRequest={asyncRequest}
+        id={id}
+      />
       <hr />
-
       <ReviewList
         id={id}
         asyncRequest={asyncRequest}
