@@ -19,10 +19,6 @@ const Label = ({ loading, course }) => {
             </Typography>
           </div>
 
-          <Typography variant="subtitle2">
-            Date created: {course.date.split('T')[0]}
-          </Typography>
-          <br />
           <div>
             {course.stack.map(val => {
               return <TagsStack label={val} />;

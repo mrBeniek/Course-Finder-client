@@ -14,13 +14,26 @@ const Description = ({ loading, course }) => {
         />
       ) : (
         <React.Fragment>
-          <a
-            href={course.link}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <b>{course.link}</b>
-          </a>
+          <div className={styles.info}>
+            <Typography variant="body1">
+              Date created:{' '}
+              <b>{course.date.split('T')[0]}</b>
+            </Typography>
+            <Typography variant="body1">
+              Author: <b>{course.courseAuthor}</b>
+            </Typography>
+            <Typography variant="body1">
+              Link:{' '}
+              <a
+                href={course.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <b>{course.link}</b>
+              </a>
+            </Typography>
+          </div>
+          <hr />
           <Typography className={styles.desc} paragraph>
             {course.description}
           </Typography>
