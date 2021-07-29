@@ -1,7 +1,6 @@
 import styles from './CoursesList.module.scss';
 import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
-import SkeletonCourses from '../common/SkeletonCourses';
 import CourseLogo from '../common/CourseLogo';
 import TagsStack from '../common/TagsStack';
 import CourseRating from '../common/CourseRating';
@@ -34,9 +33,7 @@ const CoursesList = ({ courses, loading }) => {
                   history.push(`/course/${val._id}`);
               }}
             >
-              {loading ? (
-                <SkeletonCourses />
-              ) : (
+              {!loading && (
                 <Fragment>
                   <div className={styles.containerInfo}>
                     <div>
