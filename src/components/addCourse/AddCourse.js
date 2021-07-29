@@ -21,6 +21,7 @@ import {
 const AddCourse = ({ asyncRequest, loginState }) => {
   const [courseName, setCourseName] = useState('');
   const [courseLink, setCourseLink] = useState('');
+  const [courseAuthor, setCourseAuthor] = useState('');
   const [courseSource, setCourseSource] = useState('');
   const [courseDate, setCourseDate] = useState(
     new Date(Date.now())
@@ -47,6 +48,7 @@ const AddCourse = ({ asyncRequest, loginState }) => {
       authAxios.post('/api/add/course', {
         data: {
           name: courseName,
+          courseAuthor: courseAuthor,
           link: courseLink,
           source: courseSource,
           date: courseDate,
@@ -76,10 +78,16 @@ const AddCourse = ({ asyncRequest, loginState }) => {
         onChange={handleChange(setCourseName)}
       />
       <InputField
+        label="Author"
+        value={courseAuthor}
+        onChange={handleChange(setCourseAuthor)}
+      />
+      <InputField
         label="Link"
         value={courseLink}
         onChange={handleChange(setCourseLink)}
       />
+
       <div>
         <FormControl
           className={styles.formSource}
