@@ -22,12 +22,11 @@ const CoursesList = ({ courses, loading }) => {
       {courses.map((val, index) => {
         return (
           <Grow
-            key={val}
+            key={val._id}
             in={!loading}
             timeout={DELAY[index]}
           >
             <Container
-              key={val}
               className={styles.container}
               maxWidth="lg"
               onClick={() => {
@@ -36,7 +35,7 @@ const CoursesList = ({ courses, loading }) => {
               }}
             >
               {loading ? (
-                <SkeletonCourses key={val} />
+                <SkeletonCourses />
               ) : (
                 <Fragment>
                   <div className={styles.containerInfo}>
