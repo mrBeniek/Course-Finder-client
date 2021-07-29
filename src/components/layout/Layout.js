@@ -7,18 +7,15 @@ import useAsync from 'hooks/useAsync';
 
 const Layout = ({ children, title = false }) => {
   const { asyncRequest, status, msg } = useAsync();
-  const [loginState, setLoginState] = useState(false);
+  const [loginState, setLoginState] = useState(
+    localStorage.token && true
+  );
 
   useEffect(() => {
     if (title) {
       document.title = title;
     }
   }, [title]);
-
-  useEffect(() => {
-    if (localStorage.token) setLoginState(true);
-    else setLoginState(false);
-  }, [loginState]);
 
   return (
     <div>
