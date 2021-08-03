@@ -12,8 +12,18 @@ import Container from '@material-ui/core/Container';
 const CoursesList = ({ courses, loading }) => {
   const history = useHistory();
 
+  const DELAY_BASE = 600;
   const DELAY = [
-    0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500,
+    0,
+    DELAY_BASE,
+    DELAY_BASE * 2,
+    DELAY_BASE * 3,
+    DELAY_BASE * 4,
+    DELAY_BASE * 5,
+    DELAY_BASE * 6,
+    DELAY_BASE * 7,
+    DELAY_BASE * 8,
+    DELAY_BASE * 9,
   ];
 
   return (
