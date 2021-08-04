@@ -13,6 +13,8 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordLengthErr, setPasswordLengthErr] =
+    useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [passwordError, setPasswordError] = useState(false);
 
@@ -27,18 +29,22 @@ const Signup = () => {
   }, []);
 
   useEffect(() => {
-    if (passwordError) {
+    if (passwordError || passwordLengthErr) {
       setTimeout(() => {
+        setPasswordLengthErr(false);
         setPasswordError(false);
       }, 4000);
     }
-  }, [passwordError]);
+  }, [passwordError, passwordLengthErr]);
 
   const handleChange = state => event => {
     state(event.target.value);
   };
 
   const handleSign = async () => {
+    if (password.length < 8) {
+      return setPasswordLengthErr(true);
+    }
     if (password !== passwordRepeat || !password) {
       return setPasswordError(true);
     }
@@ -79,6 +85,11 @@ const Signup = () => {
             onChange={handleChange(setEmail)}
           />
           <InputField
+            error={passwordLengthErr}
+            helperText={
+              passwordLengthErr &&
+              'Password too short (8 characters minimum)'
+            }
             id="password"
             label="Password"
             type="password"
