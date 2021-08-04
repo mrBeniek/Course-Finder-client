@@ -26,6 +26,14 @@ const Signup = () => {
     document.title = 'Sign Up - Course Finder';
   }, []);
 
+  useEffect(() => {
+    if (passwordError) {
+      setTimeout(() => {
+        setPasswordError(false);
+      }, 4000);
+    }
+  }, [passwordError]);
+
   const handleChange = state => event => {
     state(event.target.value);
   };
