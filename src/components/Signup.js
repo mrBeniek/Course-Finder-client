@@ -11,10 +11,12 @@ import Typography from '@material-ui/core/Typography';
 const Signup = () => {
   const { credentialsSend, status, msg } = useCredentials();
   const [username, setUsername] = useState('');
+  const [usernameErr, setUsernameErr] = useState(false);
   const [email, setEmail] = useState('');
+  const [emailErr, setEmailErr] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordLengthErr, setPasswordLengthErr] =
-    useState('');
+    useState(false);
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [passwordError, setPasswordError] = useState(false);
 
@@ -28,26 +30,40 @@ const Signup = () => {
     document.title = 'Sign Up - Course Finder';
   }, []);
 
-  useEffect(() => {
-    if (passwordError || passwordLengthErr) {
-      setTimeout(() => {
-        setPasswordLengthErr(false);
-        setPasswordError(false);
-      }, 4000);
+  const errorCheck = () => {
+    let status = false;
+    if (!username) {
+      setUsernameErr(true);
+      status = true;
     }
-  }, [passwordError, passwordLengthErr]);
+    if (
+      !email ||
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+        email
+      )
+    ) {
+      setEmailErr(true);
+      status = true;
+    }
+    if (password.length < 8) {
+      setPasswordLengthErr(true);
+      status = true;
+    }
+    if (password !== passwordRepeat || !password) {
+      setPasswordError(true);
+      status = true;
+    }
+    return status;
+  };
 
-  const handleChange = state => event => {
+  const handleChange = (state, errorState) => event => {
+    errorState(false);
+
     state(event.target.value);
   };
 
   const handleSign = async () => {
-    if (password.length < 8) {
-      return setPasswordLengthErr(true);
-    }
-    if (password !== passwordRepeat || !password) {
-      return setPasswordError(true);
-    }
+    if (errorCheck()) return;
 
     const payload = {
       username: username,
@@ -71,19 +87,32 @@ const Signup = () => {
           autoComplete="off"
         >
           <InputField
+            error={usernameErr}
+            helperText={
+              usernameErr && 'Please enter your username'
+            }
             id="username"
             label="Username"
             value={username}
             autoFocus
-            onChange={handleChange(setUsername)}
+            onChange={handleChange(
+              setUsername,
+              setUsernameErr
+            )}
           />
+
           <InputField
+            error={emailErr}
+            helperText={
+              emailErr && 'Please enter a valid email'
+            }
             id="email"
             label="Email"
             type="email"
             value={email}
-            onChange={handleChange(setEmail)}
+            onChange={handleChange(setEmail, setEmailErr)}
           />
+
           <InputField
             error={passwordLengthErr}
             helperText={
@@ -94,7 +123,10 @@ const Signup = () => {
             label="Password"
             type="password"
             value={password}
-            onChange={handleChange(setPassword)}
+            onChange={handleChange(
+              setPassword,
+              setPasswordLengthErr
+            )}
           />
           <InputField
             error={passwordError}
@@ -105,7 +137,10 @@ const Signup = () => {
             label="Repeat Password"
             type="password"
             value={passwordRepeat}
-            onChange={handleChange(setPasswordRepeat)}
+            onChange={handleChange(
+              setPasswordRepeat,
+              setPasswordError
+            )}
           />
         </form>
         <Button
