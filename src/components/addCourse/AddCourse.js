@@ -17,6 +17,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { FormHelperText } from '@material-ui/core';
 
 const AddCourse = ({ asyncRequest, loginState }) => {
   const [courseName, setCourseName] = useState('');
@@ -28,6 +29,11 @@ const AddCourse = ({ asyncRequest, loginState }) => {
   );
   const [courseStack, setCourseStack] = useState([]);
   const [courseDesc, setCourseDesc] = useState('');
+  const [nameErr, setNameErr] = useState(false);
+  const [authorErr, setAuthorErr] = useState(false);
+  const [linkErr, setLinkErr] = useState(false);
+  const [sourceErr, setSourceErr] = useState(false);
+  const [descErr, setDescErr] = useState(false);
 
   const history = useHistory();
 
@@ -35,7 +41,39 @@ const AddCourse = ({ asyncRequest, loginState }) => {
     if (!localStorage.token) history.push('/');
   });
 
-  const handleChange = state => event => {
+  const errorCheck = () => {
+    let status = false;
+    if (!courseName) {
+      setNameErr(true);
+      status = true;
+    }
+    if (!courseAuthor) {
+      setAuthorErr(true);
+      status = true;
+    }
+    if (
+      !courseLink ||
+      !/(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
+        courseLink
+      )
+    ) {
+      setLinkErr(true);
+      status = true;
+    }
+    if (!courseSource) {
+      setSourceErr(true);
+      status = true;
+    }
+    if (!courseDesc) {
+      setDescErr(true);
+      status = true;
+    }
+    return status;
+  };
+
+  const handleChange = (state, errorState) => event => {
+    errorState(false);
+
     state(event.target.value);
   };
 
@@ -44,6 +82,8 @@ const AddCourse = ({ asyncRequest, loginState }) => {
   };
 
   const handleSubmit = async () => {
+    if (errorCheck()) return;
+
     const { ok, data } = await asyncRequest(
       authAxios.post('/api/add/course', {
         data: {
@@ -73,24 +113,42 @@ const AddCourse = ({ asyncRequest, loginState }) => {
       </Typography>
       <hr />
       <InputField
+        error={nameErr}
+        helperText={
+          nameErr && 'Please enter a valid course name'
+        }
         label="Name"
         value={courseName}
-        onChange={handleChange(setCourseName)}
+        onChange={handleChange(setCourseName, setNameErr)}
       />
       <InputField
+        error={authorErr}
+        helperText={
+          authorErr &&
+          'Please enter the author of this course'
+        }
         label="Author"
         value={courseAuthor}
-        onChange={handleChange(setCourseAuthor)}
+        onChange={handleChange(
+          setCourseAuthor,
+          setAuthorErr
+        )}
       />
       <InputField
+        error={linkErr}
+        helperText={
+          linkErr &&
+          'Please enter a valid link to this course'
+        }
         label="Link"
         value={courseLink}
-        onChange={handleChange(setCourseLink)}
+        onChange={handleChange(setCourseLink, setLinkErr)}
       />
 
       <div>
         <FormControl
           className={styles.formSource}
+          error={sourceErr}
           margin="normal"
           size="small"
           variant="filled"
@@ -104,12 +162,20 @@ const AddCourse = ({ asyncRequest, loginState }) => {
             id="course-source-select"
             value={courseSource}
             variant="filled"
-            onChange={handleChange(setCourseSource)}
+            onChange={handleChange(
+              setCourseSource,
+              setSourceErr
+            )}
           >
             <MenuItem value={'udemy'}>Udemy</MenuItem>
             <MenuItem value={'youtube'}>Youtube</MenuItem>
             <MenuItem value={'other'}>Other</MenuItem>
           </Select>
+          {sourceErr && (
+            <FormHelperText>
+              Please select the source
+            </FormHelperText>
+          )}
         </FormControl>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
@@ -133,11 +199,16 @@ const AddCourse = ({ asyncRequest, loginState }) => {
         setCourseStack={setCourseStack}
       />
       <InputField
+        error={descErr}
+        helperText={
+          descErr &&
+          "Please don't leave the description field empty"
+        }
         label="Description"
         value={courseDesc}
         multiline
         rows={8}
-        onChange={handleChange(setCourseDesc)}
+        onChange={handleChange(setCourseDesc, setDescErr)}
       />
 
       <Button
