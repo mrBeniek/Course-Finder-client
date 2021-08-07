@@ -1,12 +1,16 @@
+@import '_app.scss';
+
 .recommend {
+  color: $greyish;
   background: rgb(214, 205, 205);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 3px solid rgba(0, 0, 0, 0.356);
   width: 150px;
 }
 
 .icon {
+  color: $greyish;
   margin-right: 8px;
 }

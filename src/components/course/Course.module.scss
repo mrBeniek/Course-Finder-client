@@ -1,7 +1,9 @@
+@import '_app.scss';
+
 .container {
   border: black solid 3px;
   padding: 50px;
-  background-color: rgb(42, 212, 147);
+  background-image: $main-gradient;
   min-height: 80vh;
   margin-top: 20px;
 }

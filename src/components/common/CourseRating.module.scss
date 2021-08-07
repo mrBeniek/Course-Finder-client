@@ -1,11 +1,13 @@
 @import '_app.scss';
 
 .container {
+  color: black;
+  text-shadow: 1px 1px 1px #3d3c3c96;
+
   @extend .flex-mid-full;
 
   min-width: 55px;
   height: 40px;
-
   margin-right: 10px;
 }
 

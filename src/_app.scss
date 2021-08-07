@@ -1,7 +1,45 @@
 //@import '_app.scss';
 
+// $main-gradient: linear-gradient(
+//   109.6deg,
+//   rgba(61, 245, 167, 1) 11.2%,
+//   rgba(9, 111, 224, 1) 91.1%
+// );
+
+// ten fajny na dark modzie
+
+// $main-gradient: linear-gradient(
+//   117deg,
+//   rgba(123, 216, 96, 1) 39.2%,
+//   rgb(224, 224, 224) 156.2%
+// );
+
+// $main-gradient: linear-gradient(
+//   135deg,
+//   #c9de96 0%,
+//   #8ab66b 44%,
+//   #398235 100%
+// );
+
+// $main-gradient: linear-gradient(
+//   135deg,
+//   #b4e391 0%,
+//   #61c419 50%,
+//   #b4e391 100%
+// );
+
+$main-gradient: radial-gradient(
+  circle farthest-corner at 23.1% 33.3%,
+  rgba(33, 222, 123, 1) 0%,
+  rgba(39, 180, 106, 1) 90%
+);
+
+$greyish: #e9e7e4;
+
 body {
   background-color: rgb(107, 132, 148);
+  box-shadow: inset 0px 13px 13px 0px rgba(0, 0, 0, 0.8),
+    inset 0px -13px 13px 0px rgba(0, 0, 0, 0.8);
 }
 
 .flex-solo {
@@ -16,4 +54,16 @@ body {
 
 .white-font {
   color: white;
+}
+
+.greyish-font {
+  color: #e9e7e4;
+}
+
+.small-text-shadow {
+  text-shadow: 1px 2px 3px #3d3c3cea;
+}
+
+.big-text-shadow {
+  text-shadow: 1px 3px 2.5px #3d3c3c;
 }

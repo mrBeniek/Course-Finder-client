@@ -44,6 +44,7 @@ const ReviewBox = ({ asyncRequest, courseId, id }) => {
         Completed this course? Tell us about it:
       </Typography>
       <InputField
+        className={styles.inputField}
         label="Your review..."
         value={review}
         multiline

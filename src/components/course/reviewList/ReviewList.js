@@ -89,6 +89,7 @@ const ReviewList = ({
                   <div>
                     <Typography variant="h6">
                       <Link
+                        className={styles.author}
                         href=""
                         onClick={() =>
                           history.push(

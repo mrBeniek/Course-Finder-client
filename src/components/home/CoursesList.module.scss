@@ -1,8 +1,13 @@
 @import '_app.scss';
 
 .container {
-  background-color: rgb(42, 212, 147);
+  background-image: $main-gradient;
+  box-shadow: 1px -3px 5px 0px rgba(0, 0, 0, 0.8),
+    inset 3px -3px 5px 0px rgba(241, 239, 239, 0.8);
+
   border: black 3px solid;
+  border-radius: 6px;
+
   margin-top: 20px;
   padding: 10px 20px;
   cursor: pointer;
@@ -14,6 +19,7 @@
 }
 
 .containerName {
+  @extend .big-text-shadow;
   display: flex;
 }
 
