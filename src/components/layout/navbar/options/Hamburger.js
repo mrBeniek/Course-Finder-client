@@ -10,7 +10,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const Hamburger = ({ setLoginState, userLabel }) => {
+const Hamburger = ({
+  setLoginState,
+  userLabel,
+  profileQuery,
+}) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const anchorRef = useRef(null);
@@ -71,13 +75,17 @@ const Hamburger = ({ setLoginState, userLabel }) => {
                   autoFocusItem={openMenu}
                   id="menu-list-grow"
                 >
-                  <MenuItem
-                    onClick={() =>
-                      history.push(`/profile/${userLabel}`)
-                    }
-                  >
-                    MY PROFILE
-                  </MenuItem>
+                  {!profileQuery && (
+                    <MenuItem
+                      onClick={() =>
+                        history.push(
+                          `/profile/${userLabel}`
+                        )
+                      }
+                    >
+                      MY PROFILE
+                    </MenuItem>
+                  )}
                   <MenuItem
                     onClick={() =>
                       history.push('/addcourse')
@@ -86,9 +94,11 @@ const Hamburger = ({ setLoginState, userLabel }) => {
                     ADD COURSE
                   </MenuItem>
                   <MenuItem>REPORT BUG</MenuItem>
-                  <MenuItem onClick={handleLogout}>
-                    LOGOUT
-                  </MenuItem>
+                  {!profileQuery && (
+                    <MenuItem onClick={handleLogout}>
+                      LOGOUT
+                    </MenuItem>
+                  )}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
