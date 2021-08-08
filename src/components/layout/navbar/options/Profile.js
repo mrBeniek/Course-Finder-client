@@ -10,16 +10,12 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
-const Profile = ({ setLoginState }) => {
+const Profile = ({ setLoginState, userLabel }) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const anchorRef = useRef(null);
 
   const history = useHistory();
-
-  const userLabel =
-    localStorage.userInfo &&
-    JSON.parse(localStorage.userInfo).username;
 
   const handleToggle = () => {
     setOpenMenu(!openMenu);
@@ -88,13 +84,6 @@ const Profile = ({ setLoginState }) => {
                     }
                   >
                     MY PROFILE
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() =>
-                      history.push('/addcourse')
-                    }
-                  >
-                    ADD COURSE
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>
                     LOGOUT

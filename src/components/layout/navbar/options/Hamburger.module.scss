@@ -1,0 +1,17 @@
+@import '_app.scss';
+
+.hamburger {
+  @extend .flex-solo;
+
+  width: auto;
+  height: 3rem;
+  padding: 8px 2px;
+
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.hamburger:hover {
+  background: rgba(235, 201, 201, 0.185);
+  transform: scale(1.1);
+}
