@@ -3,12 +3,10 @@ import logo from 'assets/Course finder logo black.png';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
 import ButtonRedirect from 'components/common/ButtonRedirect';
 import NavbarSearchBar from './NavbarSearchBar';
-import Options from './Options';
+import Options from './options/Options';
 
 const Navbar = ({ loginState, setLoginState }) => {
   const history = useHistory();

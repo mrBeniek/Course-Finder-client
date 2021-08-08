@@ -1,10 +1,5 @@
 @import '_app.scss';
 
-.rightCont {
-  @extend .flex-solo;
-  justify-content: space-between;
-}
-
 .profileCont {
   @extend .flex-solo;
 
