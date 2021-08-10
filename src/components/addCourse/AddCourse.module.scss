@@ -1,7 +1,17 @@
+@import '_app.scss';
+
+.container {
+  text-shadow: none;
+}
+
 .header {
   color: white;
   font-weight: 600;
   margin-top: 50px;
+
+  @media only screen and (max-width: 400px) {
+    font-size: 3rem;
+  }
 }
 
 .formSource {
@@ -12,4 +22,15 @@
 .datePicker {
   background-color: white;
   margin-left: 15px;
+}
+
+.submitCont {
+  @extend .flex-mid-full;
+
+  padding-top: 15px;
+}
+
+.submit {
+  max-width: 250px;
+  align-self: center;
 }

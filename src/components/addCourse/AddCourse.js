@@ -107,7 +107,7 @@ const AddCourse = ({ asyncRequest, loginState }) => {
   };
 
   return (
-    <Container maxWidth="lg" className="white-font">
+    <Container className={styles.container} maxWidth="lg">
       <Typography className={styles.header} variant="h2">
         ADD NEW COURSE
       </Typography>
@@ -210,16 +210,19 @@ const AddCourse = ({ asyncRequest, loginState }) => {
         rows={8}
         onChange={handleChange(setCourseDesc, setDescErr)}
       />
-
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="primary"
-        onClick={handleSubmit}
-      >
-        Submit
-      </Button>
+      <div className={styles.submitCont}>
+        <Button
+          className={styles.submit}
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+      </div>
     </Container>
   );
 };
