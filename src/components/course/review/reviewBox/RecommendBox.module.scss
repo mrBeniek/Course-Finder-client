@@ -1,5 +1,23 @@
+.main {
+  @media only screen and (max-width: 860px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.typography {
+  @media only screen and (max-width: 860px) {
+    align-self: center;
+    margin-bottom: 16px;
+  }
+}
+
 .btn {
   margin: 6px 8px;
+  max-width: 90px;
+
+  align-self: center;
 }
 
 .btnSelect {

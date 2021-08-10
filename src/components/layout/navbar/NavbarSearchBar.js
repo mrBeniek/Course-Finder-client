@@ -1,6 +1,7 @@
 import styles from './NavbarSearchBar.module.scss';
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
@@ -16,6 +17,8 @@ const NavbarSearchBar = ({ ...props }) => {
   const [ageRange, setAgeRange] = useState([90, 1460]);
 
   const history = useHistory();
+  const logoQuery = useMediaQuery('(min-width:400px)');
+
   const query = new URLSearchParams(useLocation().search);
 
   const handleChange = state => event => {
@@ -74,7 +77,7 @@ const NavbarSearchBar = ({ ...props }) => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon />
+                {logoQuery && <SearchIcon />}
               </InputAdornment>
             ),
           }}

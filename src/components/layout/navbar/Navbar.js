@@ -2,14 +2,14 @@ import styles from './Navbar.module.scss';
 import logo from 'assets/Course finder logo black.png';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Container from '@material-ui/core/Container';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import ButtonRedirect from 'components/common/ButtonRedirect';
 import NavbarSearchBar from './NavbarSearchBar';
 import Options from './options/Options';
 
 const Navbar = ({ loginState, setLoginState }) => {
   const history = useHistory();
+  const searchBarQuery = useMediaQuery('(min-width:800px)');
 
   return (
     <Container className={styles.container} maxWidth="xl">
@@ -20,19 +20,23 @@ const Navbar = ({ loginState, setLoginState }) => {
           src={logo}
           alt="asdf"
         />
-        <NavbarSearchBar className={styles.search} />
-      </div>
 
-      {loginState ? (
-        <Options setLoginState={setLoginState} />
+        {searchBarQuery ? (
+          <NavbarSearchBar className={styles.search} />
+        ) : (
+          <Options
+            loginState={loginState}
+            setLoginState={setLoginState}
+          />
+        )}
+      </div>
+      {searchBarQuery ? (
+        <Options
+          loginState={loginState}
+          setLoginState={setLoginState}
+        />
       ) : (
-        <ButtonGroup
-          color="primary"
-          aria-label="outlined primary button group"
-        >
-          <ButtonRedirect label="Sign Up" link="/signup" />
-          <ButtonRedirect label="Login" link="/login" />
-        </ButtonGroup>
+        <NavbarSearchBar className={styles.search} />
       )}
     </Container>
   );

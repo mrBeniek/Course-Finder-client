@@ -53,6 +53,7 @@ const Hamburger = ({
         onClick={handleToggle}
       />
       <Popper
+        className={styles.popper}
         open={openMenu}
         anchorEl={anchorRef.current}
         role={undefined}
@@ -69,7 +70,7 @@ const Hamburger = ({
                   : 'center bottom',
             }}
           >
-            <Paper>
+            <Paper elevation={5}>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={openMenu}

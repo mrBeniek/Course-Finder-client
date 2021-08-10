@@ -6,3 +6,9 @@
   display: flex;
   padding-bottom: 15px;
 }
+
+.typographyName {
+  @media only screen and (max-width: 320px) {
+    font-size: 1.6rem;
+  }
+}

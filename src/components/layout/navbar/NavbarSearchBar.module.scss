@@ -1,6 +1,10 @@
 .container {
   display: flex;
   justify-content: center;
+
+  @media only screen and (max-width: 800px) {
+    padding: 3px;
+  }
 }
 
 .containerSearch {
@@ -12,6 +16,14 @@
   padding: 10px;
   width: 100%;
   max-width: 350px;
+
+  @media only screen and (max-width: 800px) {
+    max-height: 50px;
+  }
+  @media only screen and (max-width: 400px) {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .button {

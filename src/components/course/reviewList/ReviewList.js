@@ -76,8 +76,7 @@ const ReviewList = ({
           >
             REVIEWS:
           </Typography>
-          <br />
-          <br />
+
           {reviews.map(val => {
             return (
               <Container
@@ -105,11 +104,12 @@ const ReviewList = ({
                   <Recommend recommend={val.recommend} />
                 </div>
 
-                <br />
                 <hr />
-                <br />
 
-                <Typography paragraph>
+                <Typography
+                  className={styles.singleReview}
+                  paragraph
+                >
                   {val.review}
                 </Typography>
               </Container>

@@ -9,7 +9,10 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 const RecommendBox = ({ recommend, setRecommend }) => {
   return (
     <Container className={styles.main}>
-      <Typography variant="h6">
+      <Typography
+        className={styles.typography}
+        variant="h6"
+      >
         Do you recommend this course?
       </Typography>
       <Button

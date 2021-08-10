@@ -23,6 +23,12 @@
   display: flex;
 }
 
+.typographyName {
+  @media only screen and (max-width: 400px) {
+    font-size: 1.5em;
+  }
+}
+
 .tags {
   margin-top: 10px;
 }

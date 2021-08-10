@@ -51,7 +51,10 @@ const CoursesList = ({ courses, loading }) => {
                         <CourseRating
                           reviews={val.reviews}
                         />
-                        <Typography variant="h4">
+                        <Typography
+                          className={styles.typographyName}
+                          variant="h4"
+                        >
                           {val.name}
                         </Typography>
                       </div>

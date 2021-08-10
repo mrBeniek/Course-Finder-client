@@ -53,9 +53,13 @@ const NavbarFilters = ({
     >
       <AccordionSummary
         className={styles.accordionSummary}
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={
+          <ExpandMoreIcon className={styles.dropdownIcon} />
+        }
       >
-        <Typography>FILTERS</Typography>
+        <Typography className={styles.summaryTypography}>
+          FILTERS
+        </Typography>
       </AccordionSummary>
 
       <AccordionDetails className={styles.accordionDetails}>

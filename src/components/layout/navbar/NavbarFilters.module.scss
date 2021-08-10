@@ -3,15 +3,33 @@
 .form {
   background: $greyish;
 
-  max-width: 120px;
-  max-height: 46px;
+  max-width: 91px;
+  max-height: 41px;
 
   border: 1.5px solid black;
   margin-top: 8px;
+
+  @media only screen and (max-width: 500px) {
+    min-width: 76px;
+  }
 }
 
 .accordionSummary {
-  margin-left: 5px;
+  display: flex;
+  flex-direction: center;
+}
+
+.summaryTypography {
+  margin-left: -5px;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 0.8em;
+  }
+}
+
+.dropdownIcon {
+  margin-left: -13px;
+  margin-right: -13px;
 }
 
 .accordionDetails {
@@ -24,6 +42,12 @@
 
   background: rgb(184, 223, 241);
   border: 1.5px solid black;
+
+  @media only screen and (max-width: 560px) {
+    margin-left: -222px;
+    min-width: 0;
+    width: 270px;
+  }
 }
 
 .resetCont {

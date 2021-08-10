@@ -17,6 +17,7 @@ const Recommend = ({ recommend }) => {
       className={styles.recommend}
       style={{
         background: BG_COLOR[recommend],
+        fontSize: '0.5em',
       }}
       elevation={3}
     >
@@ -26,7 +27,9 @@ const Recommend = ({ recommend }) => {
         <ThumbDownOutlinedIcon className={styles.icon} />
       ) : null}
 
-      <Typography>{recommend}</Typography>
+      <Typography className={styles.typography}>
+        {recommend}
+      </Typography>
     </Paper>
   );
 };

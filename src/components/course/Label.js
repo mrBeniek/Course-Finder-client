@@ -14,7 +14,10 @@ const Label = ({ loading, course }) => {
         <React.Fragment>
           <div className={styles.containerName}>
             <CourseRating reviews={course.reviews} />
-            <Typography variant="h4">
+            <Typography
+              className={styles.typographyName}
+              variant="h4"
+            >
               {course.name}
             </Typography>
           </div>
