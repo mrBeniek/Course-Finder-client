@@ -78,7 +78,7 @@ const Hamburger = ({
                   id="menu-list-grow"
                 >
                   {loginState ? (
-                    <React.Fragment>
+                    <div>
                       {!profileQuery && (
                         <MenuItem
                           onClick={() =>
@@ -103,7 +103,7 @@ const Hamburger = ({
                           LOGOUT
                         </MenuItem>
                       )}
-                    </React.Fragment>
+                    </div>
                   ) : (
                     <React.Fragment>
                       <MenuItem
