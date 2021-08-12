@@ -1,0 +1,18 @@
+@import '_app.scss';
+
+.modal {
+  @extend .flex-mid-full;
+  height: 100vh;
+}
+
+.container {
+  width: 650px;
+  padding: 30px;
+
+  color: $greyish;
+  @extend .small-text-shadow;
+  background: $main-gradient;
+  border: 2px solid rgba(231, 35, 35, 0.801);
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px 0px rgba(0, 0, 0, 0.8);
+}

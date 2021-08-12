@@ -2,8 +2,8 @@ import styles from './Layout.module.scss';
 import React, { useState, useEffect } from 'react';
 import SnackbarInfo from 'components/common/SnackbarInfo';
 import Navbar from './navbar/Navbar';
-// import Sidebar from './Sidebar';
 import useAsync from 'hooks/useAsync';
+import OpeningModal from 'components/common/OpeningModal';
 
 const Layout = ({ children, title = false }) => {
   const { asyncRequest, status, msg } = useAsync();
@@ -20,10 +20,12 @@ const Layout = ({ children, title = false }) => {
   return (
     <div>
       <SnackbarInfo msg={msg} status={status} />
+
       <Navbar
         loginState={loginState}
         setLoginState={setLoginState}
       />
+
       <div className={styles.main}>
         <div className={styles.centerCont}>
           {React.cloneElement(children, {

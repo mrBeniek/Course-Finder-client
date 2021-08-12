@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Pagination } from '@material-ui/lab';
 import Sort from './Sort';
 import CoursesList from './CoursesList';
+import OpeningModal from 'components/common/OpeningModal';
 
 const Main = ({ asyncRequest }) => {
   const [courses, setCourses] = useState([1, 2, 3, 4, 5]);
@@ -52,6 +53,7 @@ const Main = ({ asyncRequest }) => {
   return (
     <div className={styles.main}>
       <Sort query={query} />
+      <OpeningModal />
       <CoursesList courses={courses} loading={loading} />
       {pageCount > 1 && (
         <Pagination
