@@ -13,6 +13,7 @@ import verify from 'pages/verify';
 import recEmail from 'pages/recEmail';
 import recInfo from 'pages/recInfo';
 import recPassword from 'pages/recPassword';
+import report from 'pages/report';
 import page404 from 'pages/page404';
 import profile from 'pages/profile';
 
@@ -47,6 +48,7 @@ function App() {
         path="/recovery/password/:token"
         component={recPassword}
       />
+      <Route path="/report" component={report} />
       <Route path="/signup" component={signup} />
       <Route
         path="/verify/email/:type"

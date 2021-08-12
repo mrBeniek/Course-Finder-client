@@ -96,7 +96,13 @@ const Hamburger = ({
                       >
                         ADD COURSE
                       </MenuItem>
-                      <MenuItem>REPORT BUG</MenuItem>
+                      <MenuItem
+                        onClick={() =>
+                          history.push('/report')
+                        }
+                      >
+                        REPORT BUG
+                      </MenuItem>
                       {!profileQuery && (
                         <MenuItem onClick={handleLogout}>
                           LOGOUT

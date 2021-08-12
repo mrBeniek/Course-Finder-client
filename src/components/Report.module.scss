@@ -1,0 +1,34 @@
+@import '_app.scss';
+
+.main {
+  @extend .flex-mid-full;
+  height: 80vh;
+}
+
+.container {
+  @extend .flex-mid-full;
+  flex-direction: column;
+
+  padding: 40px;
+
+  background: $main-gradient;
+  border: 3px solid black;
+  border-radius: 3px;
+  box-shadow: 1px 7px 6px 0px rgba(0, 0, 0, 0.8);
+}
+
+.form {
+  @extend .flex-mid-full;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  margin: 20px;
+
+  text-shadow: none;
+}
+
+.typography {
+  @media only screen and (max-width: 400px) {
+    font-size: 1.5rem;
+  }
+}
