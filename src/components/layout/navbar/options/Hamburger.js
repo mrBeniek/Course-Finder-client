@@ -11,6 +11,7 @@ import MenuList from '@material-ui/core/MenuList';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const Hamburger = ({
+  loginState,
   setLoginState,
   userLabel,
   profileQuery,
@@ -76,29 +77,46 @@ const Hamburger = ({
                   autoFocusItem={openMenu}
                   id="menu-list-grow"
                 >
-                  {!profileQuery && (
-                    <MenuItem
-                      onClick={() =>
-                        history.push(
-                          `/profile/${userLabel}`
-                        )
-                      }
-                    >
-                      MY PROFILE
-                    </MenuItem>
-                  )}
-                  <MenuItem
-                    onClick={() =>
-                      history.push('/addcourse')
-                    }
-                  >
-                    ADD COURSE
-                  </MenuItem>
-                  <MenuItem>REPORT BUG</MenuItem>
-                  {!profileQuery && (
-                    <MenuItem onClick={handleLogout}>
-                      LOGOUT
-                    </MenuItem>
+                  {loginState ? (
+                    <React.Fragment>
+                      {!profileQuery && (
+                        <MenuItem
+                          onClick={() =>
+                            history.push(
+                              `/profile/${userLabel}`
+                            )
+                          }
+                        >
+                          MY PROFILE
+                        </MenuItem>
+                      )}
+                      <MenuItem
+                        onClick={() =>
+                          history.push('/addcourse')
+                        }
+                      >
+                        ADD COURSE
+                      </MenuItem>
+                      <MenuItem>REPORT BUG</MenuItem>
+                      {!profileQuery && (
+                        <MenuItem onClick={handleLogout}>
+                          LOGOUT
+                        </MenuItem>
+                      )}
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      <MenuItem
+                        onClick={() =>
+                          history.push('/signup')
+                        }
+                      >
+                        SIGN UP
+                      </MenuItem>
+                      <MenuItem onClick={'/login'}>
+                        LOG IN
+                      </MenuItem>
+                    </React.Fragment>
                   )}
                 </MenuList>
               </ClickAwayListener>

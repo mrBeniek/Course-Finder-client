@@ -60,7 +60,10 @@ const Login = () => {
     <div className={styles.main}>
       <SnackbarInfo msg={msg} status={status} />
       <Container className={styles.container} maxWidth="sm">
-        <Typography component="h1" variant="h5">
+        <Typography
+          className={styles.typographyLogin}
+          variant="h4"
+        >
           LOG IN
         </Typography>
         <form
@@ -84,17 +87,18 @@ const Login = () => {
         </form>
         <Button
           type="submit"
-          fullWidth
           variant="contained"
           color="primary"
+          size="large"
           onClick={handleLogin}
         >
           Submit
         </Button>
         <br />
         <Button
-          fullWidth
+          className={styles.btnGithub}
           variant="contained"
+          size="large"
           color="primary"
           onClick={handleGitHub}
         >

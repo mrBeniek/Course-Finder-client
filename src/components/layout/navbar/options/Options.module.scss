@@ -4,3 +4,25 @@
   @extend .flex-solo;
   justify-content: space-between;
 }
+
+.buttonGroup {
+  @extend .flex-mid-full;
+  height: 100%;
+  width: 100%;
+  max-width: 190px;
+}
+
+.buttonSign {
+  width: 100%;
+  padding: 10px;
+
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.8);
+}
+
+.buttonLogin {
+  width: 100%;
+  max-width: 85px;
+  padding: 10px;
+
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.8);
+}

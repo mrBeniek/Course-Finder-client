@@ -93,7 +93,7 @@ const RecPassword = ({ asyncRequest, token }) => {
         </form>
         <Button
           type="submit"
-          fullWidth
+          size="large"
           variant="contained"
           color="primary"
           onClick={handleSubmit}

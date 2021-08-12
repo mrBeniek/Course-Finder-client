@@ -9,7 +9,7 @@ import Options from './options/Options';
 
 const Navbar = ({ loginState, setLoginState }) => {
   const history = useHistory();
-  const searchBarQuery = useMediaQuery('(min-width:800px)');
+  const searchBarQuery = useMediaQuery('(min-width:900px)');
 
   return (
     <Container className={styles.container} maxWidth="xl">

@@ -10,6 +10,7 @@ import ButtonRedirect from 'components/common/ButtonRedirect';
 const Options = ({ loginState, setLoginState }) => {
   const profileQuery = useMediaQuery('(min-width:1000px)');
   const dividerQuery = useMediaQuery('(min-width:800px)');
+  const loginQuery = useMediaQuery('(min-width:500px)');
 
   const userLabel =
     localStorage.userInfo &&
@@ -17,7 +18,27 @@ const Options = ({ loginState, setLoginState }) => {
 
   return (
     <React.Fragment>
-      {loginState ? (
+      {!loginState && loginQuery ? (
+        <ButtonGroup
+          className={styles.buttonGroup}
+          variant="contained"
+          color="primary"
+          aria-label="outlined primary button group"
+          disableElevation
+        >
+          <ButtonRedirect
+            className={styles.buttonLogin}
+            color="default"
+            label="Log in"
+            link="/login"
+          />
+          <ButtonRedirect
+            className={styles.buttonSign}
+            label="Sign Up"
+            link="/signup"
+          />
+        </ButtonGroup>
+      ) : (
         <div className={styles.rightCont}>
           {dividerQuery && (
             <Divider
@@ -35,19 +56,12 @@ const Options = ({ loginState, setLoginState }) => {
             />
           )}
           <Hamburger
+            loginState={loginState}
             setLoginState={setLoginState}
             userLabel={userLabel}
             profileQuery={profileQuery}
           />
         </div>
-      ) : (
-        <ButtonGroup
-          color="primary"
-          aria-label="outlined primary button group"
-        >
-          <ButtonRedirect label="Sign Up" link="/signup" />
-          <ButtonRedirect label="Login" link="/login" />
-        </ButtonGroup>
       )}
     </React.Fragment>
   );

@@ -78,7 +78,10 @@ const Signup = () => {
     <div className={styles.main}>
       <SnackbarInfo msg={msg} status={status} />
       <Container className={styles.container} maxWidth="sm">
-        <Typography component="h1" variant="h5">
+        <Typography
+          className={styles.typographySignup}
+          variant="h4"
+        >
           SIGN UP
         </Typography>
         <form
@@ -145,7 +148,7 @@ const Signup = () => {
         </form>
         <Button
           type="submit"
-          fullWidth
+          size="large"
           variant="contained"
           color="primary"
           onClick={handleSign}

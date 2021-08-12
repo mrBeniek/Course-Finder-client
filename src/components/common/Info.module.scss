@@ -12,6 +12,9 @@
 }
 
 .text {
-  @extend .white-font;
   padding: 30px;
+
+  @extend .small-text-shadow;
+  color: $greyish;
+  text-align: center;
 }
