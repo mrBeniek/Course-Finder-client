@@ -32,6 +32,9 @@ const Sort = ({ query }) => {
           SORT BY
         </InputLabel>
         <Select
+          MenuProps={{
+            disableScrollLock: true,
+          }}
           labelId="course-source-label"
           id="course-source-select"
           value={sort}
