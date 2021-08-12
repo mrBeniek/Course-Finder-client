@@ -106,7 +106,7 @@ const Profile = ({ asyncRequest, username }) => {
               </Button>
 
               <ButtonRedirect
-                style={styles.buttonUsername}
+                className={styles.buttonUsername}
                 label="CHANGE PASSWORD"
                 link="/change/password"
               />
