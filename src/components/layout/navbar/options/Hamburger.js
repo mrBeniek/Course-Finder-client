@@ -1,7 +1,6 @@
 import styles from './Hamburger.module.scss';
 import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
