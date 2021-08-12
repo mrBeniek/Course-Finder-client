@@ -59,7 +59,7 @@ const ChangePassword = ({ asyncRequest }) => {
   return (
     <div className={styles.main}>
       <Container className={styles.container} maxWidth="sm">
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h4">
           CHANGE PASSWORD
         </Typography>
         <form
@@ -95,7 +95,7 @@ const ChangePassword = ({ asyncRequest }) => {
         </form>
         <Button
           type="submit"
-          fullWidth
+          size="large"
           variant="contained"
           color="primary"
           onClick={handleSubmit}

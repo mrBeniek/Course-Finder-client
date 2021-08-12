@@ -74,7 +74,7 @@ const Profile = ({ asyncRequest, username }) => {
       {loading ? (
         <Skeleton variant="text" width="75%" height={85} />
       ) : (
-        <Container>
+        <React.Fragment>
           <Container className={styles.topContainer}>
             <Container className={styles.username}>
               <Avatar className={styles.avatar}>
@@ -95,44 +95,47 @@ const Profile = ({ asyncRequest, username }) => {
             </Container>
           </Container>
           {profileOwner === username && (
-            <Container>
-              <Button
-                onClick={() =>
-                  setChangeUsername(!changeUsername)
-                }
-                className={styles.buttonUsername}
-              >
-                CHANGE USERNAME
-              </Button>
+            <Container className={styles.bottomCont}>
+              <div className={styles.buttonsCont}>
+                <Button
+                  onClick={() =>
+                    setChangeUsername(!changeUsername)
+                  }
+                  className={styles.buttonUsername}
+                >
+                  CHANGE USERNAME
+                </Button>
 
-              <ButtonRedirect
-                className={styles.buttonUsername}
-                label="CHANGE PASSWORD"
-                link="/change/password"
-              />
+                <ButtonRedirect
+                  className={styles.buttonUsername}
+                  label="CHANGE PASSWORD"
+                  link="/change/password"
+                />
+              </div>
               {changeUsername && (
-                <React.Fragment>
+                <div className={styles.inputCont}>
                   <InputField
+                    className={styles.inputField}
                     id="new username"
-                    label="Enter new username"
+                    label="New username"
                     type="username"
                     autoFocus
                     onChange={handleChange(setNewUsername)}
                   />
                   <Button
                     type="submit"
-                    fullWidth
+                    size="large"
                     variant="contained"
                     color="primary"
                     onClick={handleSubmitUsername}
                   >
                     Submit New Username
                   </Button>
-                </React.Fragment>
+                </div>
               )}
             </Container>
           )}
-        </Container>
+        </React.Fragment>
       )}
     </Container>
   );
