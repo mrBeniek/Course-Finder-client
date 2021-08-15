@@ -1,3 +1,4 @@
+import devCheck from 'utils/devCheck';
 import styles from './Signup.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -71,7 +72,7 @@ const Signup = () => {
       password: password,
     };
 
-    credentialsSend('/register', payload);
+    credentialsSend(`${devCheck}/register`, payload);
   };
 
   return (

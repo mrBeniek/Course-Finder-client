@@ -36,7 +36,7 @@ const Login = () => {
       email: email,
       password: password,
     };
-    credentialsSend('/login', payload);
+    credentialsSend(`${devCheck}/login`, payload);
   };
 
   const handleGitHub = async () => {
