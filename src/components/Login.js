@@ -1,3 +1,4 @@
+import devCheck from 'utils/devCheck';
 import styles from './Login.module.scss';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -40,7 +41,9 @@ const Login = () => {
 
   const handleGitHub = async () => {
     try {
-      const response = await axios.post('/api/auth/github');
+      const response = await axios.post(
+        `${devCheck}/api/auth/github`
+      );
       const { data } = response;
 
       if (response.status === 200) {
@@ -48,7 +51,7 @@ const Login = () => {
         const state = data.state;
         console.log(state);
         console.log('handleGitHub done');
-        window.location = `http://localhost:5000/api/auth/github/state/${state}`;
+        window.location = `${devCheck}/api/auth/github/state/${state}`;
       }
     } catch (err) {
       console.log('handleGitHub error');

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import devCheck from 'utils/devCheck';
 import authAxios from 'utils/authAxios';
 import { useLocation, useHistory } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ const Auth = () => {
 
       try {
         const response = await authAxios.post(
-          '/api/auth/github/login',
+          `${devCheck}/api/auth/github/login`,
           {
             data: code,
           }

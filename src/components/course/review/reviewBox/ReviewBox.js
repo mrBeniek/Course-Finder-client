@@ -1,4 +1,5 @@
 import styles from './ReviewBox.module.scss';
+import devCheck from 'utils/devCheck';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import authAxios from 'utils/authAxios';
@@ -21,7 +22,7 @@ const ReviewBox = ({ asyncRequest, courseId, id }) => {
   const handleSubmit = async () => {
     if (!review || !recommend) return;
     const res = await asyncRequest(
-      authAxios.post('/api/add/review', {
+      authAxios.post(`${devCheck}/api/add/review`, {
         data: {
           id: courseId,
           recommend: recommend,

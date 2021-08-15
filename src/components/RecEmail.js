@@ -1,3 +1,4 @@
+import devCheck from 'utils/devCheck';
 import styles from './RecEmail.module.scss';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -17,7 +18,9 @@ const RecEmail = ({ asyncRequest }) => {
 
   const handleSubmit = async () => {
     const { ok, data } = await asyncRequest(
-      axios.post('/api/recovery/email', { data: email })
+      axios.post(`${devCheck}/api/recovery/email`, {
+        data: email,
+      })
     );
 
     if (ok) {

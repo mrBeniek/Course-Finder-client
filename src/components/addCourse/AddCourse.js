@@ -1,4 +1,5 @@
 import 'date-fns';
+import devCheck from 'utils/devCheck';
 import styles from './AddCourse.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -85,7 +86,7 @@ const AddCourse = ({ asyncRequest, loginState }) => {
     if (errorCheck()) return;
 
     const { ok, data } = await asyncRequest(
-      authAxios.post('/api/add/course', {
+      authAxios.post(`${devCheck}/api/add/course`, {
         data: {
           name: courseName,
           courseAuthor: courseAuthor,

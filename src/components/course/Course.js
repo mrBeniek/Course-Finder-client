@@ -1,4 +1,5 @@
 import styles from './Course.module.scss';
+import devCheck from 'utils/devCheck';
 import ReviewList from './reviewList/ReviewList';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -21,7 +22,7 @@ const Course = ({ asyncRequest, loginState }) => {
   useEffect(() => {
     const fetchCourse = async () => {
       const { ok, data } = await asyncRequest(
-        axios.get(`/api/download/course/${id}`),
+        axios.get(`${devCheck}/api/download/course/${id}`),
         false
       );
 

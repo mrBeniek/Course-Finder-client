@@ -1,3 +1,4 @@
+import devCheck from 'utils/devCheck';
 import styles from './RecPassword.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -38,7 +39,7 @@ const RecPassword = ({ asyncRequest, token }) => {
 
     const { ok, data } = await asyncRequest(
       axios.post(
-        '/api/recovery/token',
+        `${devCheck}/api/recovery/token`,
         {
           data: payload,
         },

@@ -1,3 +1,4 @@
+import devCheck from 'utils/devCheck';
 import styles from './Report.module.scss';
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
@@ -23,7 +24,7 @@ const Report = ({ asyncRequest }) => {
     }
 
     await asyncRequest(
-      authAxios.post('/api/add/report', {
+      authAxios.post(`${devCheck}/api/add/report`, {
         data: {
           name,
           email,

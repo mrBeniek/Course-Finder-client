@@ -1,4 +1,5 @@
 import styles from './Main.module.scss';
+import devCheck from 'utils/devCheck';
 import React, { useState, useEffect } from 'react';
 import {
   useHistory,
@@ -27,7 +28,14 @@ const Main = ({ asyncRequest }) => {
       try {
         const { data } = await asyncRequest(
           axios.get(
-            `/api/download/courses/${page}?${queryString}`
+            `${devCheck}/api/download/courses/${page}?${queryString}`,
+            {
+              proxy: {
+                protocol: 'https',
+                host: 'server.tomaszkarpeta.pl',
+                port: 443,
+              },
+            }
           ),
           false
         );

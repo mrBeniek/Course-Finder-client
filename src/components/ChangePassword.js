@@ -1,3 +1,4 @@
+import devCheck from 'utils/devCheck';
 import styles from './ChangePassword.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -33,7 +34,7 @@ const ChangePassword = ({ asyncRequest }) => {
       JSON.parse(localStorage.userInfo).username;
 
     const { ok, data } = await asyncRequest(
-      authAxios.post('/api/change/password', {
+      authAxios.post(`${devCheck}/api/change/password`, {
         data: {
           oldPassword: oldPassword,
           password: password,

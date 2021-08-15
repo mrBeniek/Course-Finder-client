@@ -1,3 +1,4 @@
+import devCheck from 'utils/devCheck';
 import styles from './Profile.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -23,7 +24,9 @@ const Profile = ({ asyncRequest, username }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       const { ok, data } = await asyncRequest(
-        axios.get(`/api/download/profile/${username}`),
+        axios.get(
+          `${devCheck}/api/download/profile/${username}`
+        ),
         false
       );
 
@@ -47,7 +50,7 @@ const Profile = ({ asyncRequest, username }) => {
   const handleSubmitUsername = async () => {
     console.log('NEW USERNAME IS', newUsername);
     const { ok, data } = await asyncRequest(
-      authAxios.post('/api/change/username', {
+      authAxios.post(`${devCheck}/api/change/username`, {
         data: {
           username: newUsername,
         },

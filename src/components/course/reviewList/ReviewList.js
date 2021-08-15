@@ -1,4 +1,5 @@
 import styles from './ReviewList.module.scss';
+import devCheck from 'utils/devCheck';
 import Recommend from './Recommend';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -34,7 +35,7 @@ const ReviewList = ({
 
       const { ok, data } = await asyncRequest(
         axios.get(
-          `/api/download/reviews/${id}/page/${currentPage}/count/${count}/author/${author}`
+          `${devCheck}/api/download/reviews/${id}/page/${currentPage}/count/${count}/author/${author}`
         ),
         false
       );
