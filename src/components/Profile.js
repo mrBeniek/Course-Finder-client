@@ -83,7 +83,7 @@ const Profile = ({ asyncRequest, username }) => {
               <Avatar className={styles.avatar}>
                 {username[0].toUpperCase()}
               </Avatar>
-              <Typography variant="h4">
+              <Typography variant="h4" align="center">
                 {username}
               </Typography>
             </Container>
