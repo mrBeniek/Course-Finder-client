@@ -17,6 +17,7 @@ const Profile = ({ asyncRequest, username }) => {
   const [changeUsername, setChangeUsername] =
     useState(false);
   const [newUsername, setNewUsername] = useState('');
+  const [usernameErr, setUsernameErr] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const history = useHistory();
@@ -43,11 +44,16 @@ const Profile = ({ asyncRequest, username }) => {
     fetchProfile();
   }, []);
 
-  const handleChange = state => event => {
+  const handleChange = (state, errorState) => event => {
+    errorState(false);
+
     state(event.target.value);
   };
 
   const handleSubmitUsername = async () => {
+    if (!newUsername || newUsername.length > 20) {
+      return setUsernameErr(true);
+    }
     console.log('NEW USERNAME IS', newUsername);
     const { ok, data } = await asyncRequest(
       authAxios.post(`${devCheck}/api/change/username`, {
@@ -119,11 +125,19 @@ const Profile = ({ asyncRequest, username }) => {
                 <div className={styles.inputCont}>
                   <InputField
                     className={styles.inputField}
+                    error={usernameErr}
+                    helperText={
+                      usernameErr &&
+                      'Please enter a valid username (<21 characters)'
+                    }
                     id="new username"
                     label="New username"
                     type="username"
                     autoFocus
-                    onChange={handleChange(setNewUsername)}
+                    onChange={handleChange(
+                      setNewUsername,
+                      setUsernameErr
+                    )}
                   />
                   <Button
                     type="submit"

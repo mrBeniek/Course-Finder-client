@@ -33,7 +33,7 @@ const Signup = () => {
 
   const errorCheck = () => {
     let status = false;
-    if (!username) {
+    if (!username || username.length > 21) {
       setUsernameErr(true);
       status = true;
     }
@@ -93,7 +93,8 @@ const Signup = () => {
           <InputField
             error={usernameErr}
             helperText={
-              usernameErr && 'Please enter your username'
+              usernameErr &&
+              'Please enter a valid username (<21 characters)'
             }
             id="username"
             label="Username"
