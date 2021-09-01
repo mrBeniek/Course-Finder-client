@@ -18,7 +18,7 @@ const Navbar = ({ loginState, setLoginState }) => {
           onClick={() => history.push('/home')}
           className={styles.logo}
           src={logo}
-          alt="asdf"
+          alt="Course Finder Logo"
         />
 
         {searchBarQuery ? (
