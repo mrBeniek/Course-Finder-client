@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import SnackbarInfo from 'components/common/SnackbarInfo';
 import Navbar from './navbar/Navbar';
 import useAsync from 'hooks/useAsync';
-import OpeningModal from 'components/common/OpeningModal';
 
 const Layout = ({ children, title = false }) => {
-  const { asyncRequest, status, msg } = useAsync();
+  const { asyncRequest, snackbarOpen, status, msg } =
+    useAsync();
   const [loginState, setLoginState] = useState(
     localStorage.token && true
   );
@@ -19,7 +19,11 @@ const Layout = ({ children, title = false }) => {
 
   return (
     <div>
-      <SnackbarInfo msg={msg} status={status} />
+      <SnackbarInfo
+        open={snackbarOpen}
+        msg={msg}
+        status={status}
+      />
 
       <Navbar
         loginState={loginState}

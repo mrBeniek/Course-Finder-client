@@ -9,7 +9,7 @@ function Alert(props) {
   );
 }
 
-const SnackbarInfo = ({ msg, status }) => {
+const SnackbarInfo = ({ open, msg, status }) => {
   return (
     <React.Fragment>
       <Snackbar
@@ -17,7 +17,7 @@ const SnackbarInfo = ({ msg, status }) => {
           vertical: 'top',
           horizontal: 'center',
         }}
-        open={status !== 'idle'}
+        open={open}
       >
         {status === 'success' ? (
           <Alert severity="success">{msg}</Alert>

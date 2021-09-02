@@ -2,15 +2,27 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const useAsync = () => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [status, setStatus] = useState('idle');
   const [msg, setMsg] = useState('');
 
   const history = useHistory();
 
+  const snackbarClose = () => {
+    setTimeout(() => {
+      setSnackbarOpen(false);
+    }, 4500);
+
+    setTimeout(() => {
+      setStatus('idle');
+    }, 5000);
+  };
+
   const asyncRequest = async (callback, loading = true) => {
     if (loading === true) {
       setStatus('pending');
       setMsg('');
+      setSnackbarOpen(true);
     }
 
     try {
@@ -22,9 +34,9 @@ const useAsync = () => {
           setStatus('success');
           setMsg(data.msg);
         }
-        setTimeout(() => {
-          setStatus('idle');
-        }, 4500);
+
+        snackbarClose();
+
         return { ok: true, data: data };
       }
     } catch (err) {
@@ -45,9 +57,8 @@ const useAsync = () => {
         );
 
       setStatus('error');
-      setTimeout(() => {
-        setStatus('idle');
-      }, 4500);
+      snackbarClose();
+
       return {
         ok: false,
         data: response,
@@ -55,7 +66,7 @@ const useAsync = () => {
     }
   };
 
-  return { asyncRequest, status, msg };
+  return { asyncRequest, snackbarOpen, status, msg };
 };
 
 export default useAsync;
