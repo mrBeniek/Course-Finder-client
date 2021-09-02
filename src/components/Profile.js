@@ -70,6 +70,7 @@ const Profile = ({ asyncRequest, username }) => {
         JSON.stringify(data.userInfo)
       );
       document.title = `${newUsername} - Profile`;
+      setChangeUsername(false);
       history.replace(`/profile/${newUsername}`);
     }
   };
