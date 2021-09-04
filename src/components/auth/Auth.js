@@ -27,6 +27,7 @@ const Auth = () => {
             'userInfo',
             JSON.stringify(data.userInfo)
           );
+          localStorage.setItem('expires', data.expires);
           console.log('fetchToken done');
           if (data.msg === 'Login successful') {
             history.replace('/home');

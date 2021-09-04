@@ -49,6 +49,7 @@ const Login = () => {
           'userInfo',
           JSON.stringify(data.userInfo)
         );
+        localStorage.setItem('expires', data.expires);
         history.replace('/home');
       }, 700);
     }

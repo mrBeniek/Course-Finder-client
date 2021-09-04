@@ -55,6 +55,7 @@ const useAsync = () => {
         // invalid token
         localStorage.removeItem('token');
         localStorage.removeItem('userInfo');
+        localStorage.removeItem('expires');
         setMsg(response.data.msg);
         setTimeout(() => {
           history.push('/login');
