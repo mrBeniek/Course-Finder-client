@@ -12,6 +12,7 @@ import { Typography } from '@material-ui/core';
 const ReviewBox = ({ asyncRequest, courseId, id }) => {
   const [review, setReview] = useState('');
   const [recommend, setRecommend] = useState('');
+  const [submitDisable, setSubmitDisable] = useState(false);
 
   const history = useHistory();
 
@@ -21,6 +22,7 @@ const ReviewBox = ({ asyncRequest, courseId, id }) => {
 
   const handleSubmit = async () => {
     if (!review || !recommend) return;
+    setSubmitDisable(true);
     const res = await asyncRequest(
       authAxios.post(`${devCheck}/api/add/review`, {
         data: {
@@ -33,6 +35,7 @@ const ReviewBox = ({ asyncRequest, courseId, id }) => {
 
     if (res.ok) {
       setTimeout(() => {
+        setSubmitDisable(false);
         history.push('/empty');
         history.replace(`course/${id}`);
       }, 2000);
@@ -63,6 +66,7 @@ const ReviewBox = ({ asyncRequest, courseId, id }) => {
           variant="contained"
           color="primary"
           onClick={handleSubmit}
+          disabled={submitDisable}
         >
           Submit Review
         </Button>

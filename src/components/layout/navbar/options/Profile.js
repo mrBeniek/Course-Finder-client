@@ -47,7 +47,9 @@ const Profile = ({ setLoginState, userLabel }) => {
         ref={anchorRef}
         onClick={handleToggle}
       >
-        <Avatar>{userLabel[0].toUpperCase()}</Avatar>
+        <Avatar>
+          {userLabel && userLabel[0].toUpperCase()}
+        </Avatar>
         <Typography
           className={styles.profileLabel}
           variant="body1"

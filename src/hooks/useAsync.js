@@ -51,6 +51,14 @@ const useAsync = () => {
       }
       if (response.status === 403) {
         setMsg(response.data.msg);
+      } else if (response.status === 401) {
+        // invalid token
+        localStorage.removeItem('token');
+        localStorage.removeItem('userInfo');
+        setMsg(response.data.msg);
+        setTimeout(() => {
+          history.push('/login');
+        }, 1000);
       } else
         setMsg(
           'Sorry, something went wrong, try again later'
