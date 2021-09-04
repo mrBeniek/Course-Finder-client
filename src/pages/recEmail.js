@@ -1,4 +1,4 @@
-import RecEmail from 'components/RecEmail';
+import RecEmail from 'components/recEmail/RecEmail';
 import Layout from 'components/layout/Layout';
 
 const RecEmailPage = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from 'components/layout/Layout';
-import ChangePassword from 'components/ChangePassword';
+import ChangePassword from 'components/changePassword/ChangePassword';
 
 const ChangePasswordPage = () => {
   return (

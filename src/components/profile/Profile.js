@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Skeleton } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
-import ButtonRedirect from './common/ButtonRedirect';
-import InputField from './common/InputField';
+import ButtonRedirect from '../common/ButtonRedirect';
+import InputField from '../common/InputField';
 import authAxios from 'utils/authAxios';
 
 const Profile = ({ asyncRequest, username }) => {

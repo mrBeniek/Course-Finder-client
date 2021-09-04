@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from 'components/layout/Layout';
-import RecPassword from 'components/RecPassword';
+import RecPassword from 'components/recPassword/RecPassword';
 
 const RecPasswordPage = () => {
   const { token } = useParams();
