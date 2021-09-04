@@ -2,7 +2,8 @@ import devCheck from 'utils/devCheck';
 import styles from './Signup.module.scss';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import useCredentials from 'hooks/useCredentials';
+import axios from 'axios';
+import useAsync from 'hooks/useAsync';
 import SnackbarInfo from 'components/common/SnackbarInfo';
 import Container from '@material-ui/core/Container';
 import InputField from 'components/common/InputField';
@@ -10,7 +11,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const Signup = () => {
-  const { credentialsSend, status, msg } = useCredentials();
+  const { asyncRequest, snackbarOpen, status, msg } =
+    useAsync();
   const [username, setUsername] = useState('');
   const [usernameErr, setUsernameErr] = useState(false);
   const [email, setEmail] = useState('');
@@ -72,12 +74,24 @@ const Signup = () => {
       password: password,
     };
 
-    credentialsSend(`${devCheck}/register`, payload);
+    const { ok } = await asyncRequest(
+      axios.post(`${devCheck}/register`, { data: payload })
+    );
+
+    if (ok) {
+      setTimeout(() => {
+        history.replace('/verify/email/pending');
+      }, 700);
+    }
   };
 
   return (
     <div className={styles.main}>
-      <SnackbarInfo msg={msg} status={status} />
+      <SnackbarInfo
+        open={snackbarOpen}
+        msg={msg}
+        status={status}
+      />
       <Container className={styles.container} maxWidth="sm">
         <Typography
           className={styles.typographySignup}

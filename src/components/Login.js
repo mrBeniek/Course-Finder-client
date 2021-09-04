@@ -1,9 +1,9 @@
 import devCheck from 'utils/devCheck';
 import styles from './Login.module.scss';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import useCredentials from 'hooks/useCredentials';
+import axios from 'axios';
+import useAsync from 'hooks/useAsync';
 import SnackbarInfo from 'components/common/SnackbarInfo';
 import Container from '@material-ui/core/Container';
 import InputField from 'components/common/InputField';
@@ -12,7 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 const Login = () => {
-  const { credentialsSend, status, msg } = useCredentials();
+  const { asyncRequest, snackbarOpen, status, msg } =
+    useAsync();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,7 +37,21 @@ const Login = () => {
       email: email,
       password: password,
     };
-    credentialsSend(`${devCheck}/login`, payload);
+
+    const { ok, data } = await asyncRequest(
+      axios.post(`${devCheck}/login`, { data: payload })
+    );
+
+    if (ok) {
+      setTimeout(() => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem(
+          'userInfo',
+          JSON.stringify(data.userInfo)
+        );
+        history.replace('/home');
+      }, 700);
+    }
   };
 
   const handleGitHub = async () => {
@@ -61,7 +76,11 @@ const Login = () => {
 
   return (
     <div className={styles.main}>
-      <SnackbarInfo msg={msg} status={status} />
+      <SnackbarInfo
+        open={snackbarOpen}
+        msg={msg}
+        status={status}
+      />
       <Container className={styles.container} maxWidth="sm">
         <Typography
           className={styles.typographyLogin}
