@@ -39,6 +39,7 @@ const Hamburger = ({
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('expires');
     setLoginState(false);
   };
 

@@ -17,6 +17,15 @@ const Layout = ({ children, title = false }) => {
     }
   }, [title]);
 
+  useEffect(() => {
+    const expires = localStorage.expires;
+    if (Date.now() - expires > 0) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userInfo');
+      localStorage.removeItem('expires');
+    }
+  });
+
   return (
     <div>
       <SnackbarInfo
