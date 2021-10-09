@@ -1,0 +1,36 @@
+@import '_app.scss';
+
+.openButton {
+  background: $greyish;
+
+  max-width: 91px;
+  max-height: 41px;
+
+  border: 1.5px solid black;
+  margin-top: 14px;
+
+  @media only screen and (max-width: 900px) {
+    max-width: 70px;
+    margin-top: 10px;
+  }
+}
+
+.drawer {
+  max-width: 400px;
+  width: auto;
+  padding: 22px;
+  height: 100%;
+
+  background: rgb(184, 223, 241);
+
+  @media only screen and (max-width: 500px) {
+    width: 280px;
+  }
+}
+
+.resetCont {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}

@@ -7,8 +7,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import ButtonRedirect from 'components/common/ButtonRedirect';
 import { Container } from '@material-ui/core';
-import NavbarFilters from './NavbarFilters';
 import { ageConvert } from 'utils/ageConvert';
+import NavbarDrawer from './NavbarDrawer';
 
 const NavbarSearchBar = ({ ...props }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -97,7 +97,7 @@ const NavbarSearchBar = ({ ...props }) => {
           color="primary"
         />
       </Container>
-      <NavbarFilters
+      <NavbarDrawer
         courseStack={courseStack}
         setCourseStack={setCourseStack}
         ratingRange={ratingRange}
